@@ -64,3 +64,11 @@ button:hover{
     font-size: 20pt;
     width: 140%;
 }
+
+#logout {
+    text-decoration: none;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 40px;
+}

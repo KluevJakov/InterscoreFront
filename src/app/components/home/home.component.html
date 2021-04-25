@@ -1,6 +1,7 @@
 <html>
 <body>
     <div id="content">
+        <a style="display: {{isAuth ? 'unset' : 'none'}}" id="logout" href="#" (click)="logout()"><h3>Logout</h3></a>
         <div id="leftBlock">
             <h1>Interscore</h1>
             <hr>
@@ -9,8 +10,8 @@
             </p>
         </div>
         <div id="rightBlock">
-            <button onclick="location.href = '/login'">Login</button>
-            <button onclick="location.href = '/registration'">Register</button>
+            <button style="display: {{isAuth ? 'none' : 'unset'}}" onclick="location.href = '/login'">Login</button>
+            <button style="display: {{isAuth ? 'none' : 'unset'}}" onclick="location.href = '/registration'">Register</button>
         </div>
     </div>
 </body>
