@@ -1,1 +1,31 @@
-<p>profile works!</p>
+<div id="header">
+    <h2>Interscore</h2>
+    <h2>{{user.email}}</h2>
+</div>
+<div id="content">
+    <div id="profile">
+        <h2>Interviewee Profile</h2>
+        <div id="secs">
+            <div class="sections" id="section1">
+                <img src="{{user.avatar}}" alt="Изображение профиля">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li>{{user.email}}</li>
+                    <li></li>
+                </ul>
+                <p>Edit profile</p>
+            </div>
+            <div class="sections" id="section2">
+                <h3>My Interviews</h3>
+                <hr>
+            </div>
+            <div class="sections" id="section3">
+                <h3>My Polls</h3>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
