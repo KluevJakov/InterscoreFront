@@ -23,7 +23,11 @@ export class RegistrationComponent implements OnInit {
               ) {
     this.formRegistration = this.fb.group({
       email: [``],
-      password: [``]
+      password: [``],
+      name: [``],
+      surname: [``],
+      patronymic: [``],
+      photo: "/assets/images/icon_download.png"
     });
    }
 

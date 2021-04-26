@@ -1,13 +1,17 @@
 <div id="header">
-    <h2>Interscore</h2>
-    <h2>{{user.email}}</h2>
+    <h2><a href="/">Interscore</a></h2>
+    <div id="bio"><h2>{{user.email}} | <a style="display: {{isAuth ? 'unset' : 'none'}}" id="logout" href="#" (click)="logout()">Logout</a></h2></div>
 </div>
 <div id="content">
     <div id="profile">
         <h2>Interviewee Profile</h2>
         <div id="secs">
             <div class="sections" id="section1">
-                <img src="{{user.avatar}}" alt="Изображение профиля">
+                <img src="{{user.photo}}" alt="Изображение профиля">
+                <label for="AddImage" class="customFileUpload">
+                    Upload Photo
+                </label>
+                <input type="file" name="AddImage" id="AddImage" accept="image/*"/>
                 <ul>
                     <li></li>
                     <li></li>

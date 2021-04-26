@@ -13,6 +13,15 @@
     margin-inline: 20px;
 }
 
+#header h2 a{
+    color: white;
+    text-decoration: none;
+}
+
+#header h2 a:hover{
+    color: #172429;
+}
+
 #content{
     width: 100%;
     height: 85%;
@@ -62,6 +71,8 @@
 
 #section1 img{
     border-radius: 50%;
+    width: 150px;
+    height: 150px;
     border: 3px solid white;
     
 }
@@ -71,4 +82,34 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#section1 ul {
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+#logout {
+    text-decoration: none;
+    color: white;
+}
+
+#logout:hover {
+    text-decoration: none;
+    color: #172429;
+}
+
+input[type="file"] {
+    display: none;
+}
+.customFileUpload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 3px 6px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#bio {
+
 }

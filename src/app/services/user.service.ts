@@ -14,7 +14,6 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   userPage(id: string): Observable<User> {
-    alert(id);
     return this.http.get<User>(API_URL + '/profile/' + id);
   }
 }

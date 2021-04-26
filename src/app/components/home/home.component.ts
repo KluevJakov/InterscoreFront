@@ -10,16 +10,22 @@ import { StorageService } from 'src/app/services/storage.service';
 export class HomeComponent implements OnInit {
 
   public isAuth = false;
+  public currentId = 1;
 
   constructor(private storageService: StorageService,private authService: AuthService) { }
 
   ngOnInit(): void {
     if(this.storageService.getUser() != null){
       this.isAuth = true;
+      this.currentId = this.storageService.getUser().id;
     }
   }
 
   logout(): void {
     this.authService.logout();
+  }
+
+  myProfile(): void {
+    document.location.href = '/profile/'+this.currentId;
   }
 }

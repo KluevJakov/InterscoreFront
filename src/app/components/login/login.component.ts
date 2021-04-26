@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
       });
 
     }
+
   /*
   auth(): void {
     alert(this.formLogin.controls["email"].value);

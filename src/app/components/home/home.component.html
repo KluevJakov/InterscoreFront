@@ -12,6 +12,7 @@
         <div id="rightBlock">
             <button style="display: {{isAuth ? 'none' : 'unset'}}" onclick="location.href = '/login'">Login</button>
             <button style="display: {{isAuth ? 'none' : 'unset'}}" onclick="location.href = '/registration'">Register</button>
+            <button style="display: {{isAuth ? 'unset' : 'none'}}" (click)="myProfile()">My Profile</button>
         </div>
     </div>
 </body>
