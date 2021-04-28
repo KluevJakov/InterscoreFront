@@ -27,6 +27,9 @@ export class RegistrationComponent implements OnInit {
       name: [``],
       surname: [``],
       patronymic: [``],
+      phone: [``],
+      birthday: [``],
+      sex: [``],
       photo: "/assets/images/icon_download.png"
     });
    }
