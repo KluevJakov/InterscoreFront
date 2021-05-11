@@ -13,7 +13,7 @@
                 </label>
                 <input type="file" name="AddImage" id="AddImage" accept="image/*"/>
                 <ul>
-                    <li>{{user.name}} {{user.surname}} {{user.patronymic}}</li>
+                    <li>{{user.surname}} {{user.name}} {{user.patronymic}}</li>
                     <li>{{user.birthday}}</li>
                     <li></li>
                     <li>{{user.phone}}</li>
@@ -25,10 +25,18 @@
             <div class="sections" id="section2">
                 <h3>My Interviews</h3>
                 <hr>
+                <div class="plusContainer">
+                    <div class="export" id="exportInterview">e</div>
+                    <div class="plus" onclick="location.href = '/createInterview'" id="plusInterview">+</div>
+                </div>
             </div>
             <div class="sections" id="section3">
                 <h3>My Polls</h3>
                 <hr>
+                <div class="plusContainer">
+                    <div class="export" id="exportPolls">e</div>
+                    <div class="plus" onclick="location.href = '/createPoll'" id="plusPolls">+</div>
+                </div>
             </div>
         </div>
     </div>

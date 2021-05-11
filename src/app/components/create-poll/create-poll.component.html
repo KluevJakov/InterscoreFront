@@ -1,0 +1,32 @@
+<div id="header">
+    <h2><a href="/">Interscore</a></h2>
+    <div id="bio"><h2><a href="/profile/{{user.id}}">{{user.email}}</a></h2></div>
+</div>
+<div id="content">
+    <div id="profile">
+        <h2>Poll Constructor</h2>
+        <div id="secs">
+            <div class="sections" id="section1">
+                <h3>General Information</h3>
+                <hr>
+                <input type="text" placeholder="Name Of Poll">
+                <select id="usersList">
+                    <option value="1">Клюев Я.А.</option>
+                    <option value="2">Иванов И.И.</option>
+                    <option value="3">Семёнов С.С.</option>
+                    <option value="4">Петров П.П.</option>
+                    <option value="5">Алексеев А.А.</option>
+                </select>
+                <input value="Create Poll" type="submit">
+            </div>
+            <div class="sections" id="section2">
+                <h3>List Of Questions</h3>
+                <hr>
+                <div class="plusContainer">
+                    <div class="export" id="exportInterview">e</div>
+                    <div class="plus" onclick="location.href = '/createInterview'" id="plusInterview">+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

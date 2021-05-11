@@ -10,6 +10,8 @@ import { RegistrationComponent } from './components/registration/registration.co
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CreatePollComponent } from './components/create-poll/create-poll.component';
+import { CreateInterviewComponent } from './components/create-interview/create-interview.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    CreatePollComponent,
+    CreateInterviewComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
   user: User = {} as User;
   public isAuth = false;
+  //private error = "";
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private userService: UserService, private storageService: StorageService) { }
 
@@ -20,6 +21,9 @@ export class ProfileComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id') || "1";
     this.userService.userPage(id).subscribe(response => {
       this.user = response;
+    },
+    error =>{
+      alert(error.error);
     });
     if(this.storageService.getUser() != null){
       this.isAuth = true;
