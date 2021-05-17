@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Poll } from 'src/app/models/poll';
 import { User } from 'src/app/models/user';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
@@ -11,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CreatePollComponent implements OnInit {
   user: User = {} as User;
   userList: Array<User> = [];
+  pollList: Array<Poll> = [];
 
   constructor(private userService: UserService, private storageService: StorageService) { }
 
