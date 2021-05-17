@@ -226,3 +226,15 @@ input[type="text"] {
     margin-bottom: 7%;
     transition: .6s;
 }
+
+div#questions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.question {
+    background: #ffffff73;
+    width: 80%;
+    padding: 6%;
+}
