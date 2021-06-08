@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
       },
         (error) => {
           this.errorMessage = error.error;
+          alert(this.errorMessage);
           this.errorFlag = true;
       });
 

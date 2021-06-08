@@ -12,6 +12,6 @@ export class Poll{
     id: number;
     is_accepted: boolean;
     name: string;
-    interviewee_id: string;
+    interviewee_id: number;
     interviewer_id: number;
   }

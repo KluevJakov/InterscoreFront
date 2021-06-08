@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
       this.user = response;
     },
     error =>{
-      alert(error.error);
+      //alert(error.error);
     });
     if(this.storageService.getUser() != null){
       this.isAuth = true;

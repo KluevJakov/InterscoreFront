@@ -24,13 +24,15 @@
 
 #content{
     width: 100%;
-    height: 85%;
+    height: 80%;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #profile {
+    height: 100%;
     border: 4px solid white;
     color: white;
     background: #ffffff30;
@@ -45,7 +47,7 @@
     border: 2px solid white;
     background: #ffffff30;
     width: 30%;
-    height: 400px;
+    height: 100%;
     margin: 1%;
     display: flex;
     flex-direction: column;
@@ -56,6 +58,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 87%;
     margin-bottom: 20px;
 }
 
@@ -184,6 +187,8 @@ hr {
 
 div#section2 {
     width: 60%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 input[type="submit"] {
@@ -231,10 +236,32 @@ div#questions {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    flex-direction: column;
 }
 
-.question {
-    background: #ffffff73;
+.quest {
+    border: 2px solid white;
+    padding: 20px;
     width: 80%;
-    padding: 6%;
+    background: #ffffff4d;
+}
+
+#optsValue{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 64px;
+    margin-bottom: 7%;
+}
+
+input#options {
+    height: 80%;
+}
+
+.options {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }

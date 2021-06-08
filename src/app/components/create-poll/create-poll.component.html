@@ -13,28 +13,27 @@
                 <select id="usersList">
                     
                 </select>
-                <input value="Create Poll" type="submit">
+                <input (click)="createPoll()" value="Create Poll" type="submit">
             </div>
             <div class="sections" id="section2">
                 <h3>List Of Questions</h3>
                 <hr>
                 <div id="questions">
-                    <!--
-                    <div class="question">  
-                        <input type="text" name="title"> 
-                        <select id="usersList"></select>
-                        <textarea name="discription"></textarea>
-                        <div class="options">
-                        </div>  
-                        <a (click)="addOption()">Add Option</a>
-                    </div>
-                -->
+                    
                 </div>
                 <div class="plusContainer">
                     <div class="export" id="exportInterview">e</div>
                     <div class="plus" (click)="addQuestion()" id="plusInterview">+</div>
                 </div>
             </div>
+            <script>
+                let input = document.getElementById("opts");
+                input.addEventListener('change', updateValue);
+            
+                function updateValue(e) {
+                    alert(e.target.value);
+                }
+            </script>
         </div>
     </div>
 </div>

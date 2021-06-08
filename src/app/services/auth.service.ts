@@ -21,6 +21,7 @@ export class AuthService {
     }
 
     login(form: FormGroup): Observable<any> {
+      //alert(form.controls["email"].value);
       return this.http.post<any>(API_URL + '/login', form.value);
     }
     register(form: FormGroup): Observable<any> {

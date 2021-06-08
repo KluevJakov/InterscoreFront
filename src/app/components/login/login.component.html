@@ -3,7 +3,7 @@
     <div id="content">
         <div id="container">
         <h2>Login</h2>
-        <form [formGroup]="formLogin" (ngSubmit)="auth()">
+        <form [formGroup]="formLogin" (ngSubmit)="auth()" method="POST">
             <div class="form-group">
                 <label for="email">Email: </label>
                 <input type="text" name="email" id="email" formControlName="email" class="form-control" required />
