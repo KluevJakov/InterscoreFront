@@ -41,13 +41,13 @@ export class LoginComponent implements OnInit {
         this.storageService.saveUser(new User(response));
         this.router.navigate(['/']).then(() => location.reload());
       },
-        (error) => {
+      (error) => {
           this.errorMessage = error.error;
           alert(this.errorMessage);
           this.errorFlag = true;
       });
 
-    }
+  }
 
   /*
   auth(): void {

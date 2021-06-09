@@ -260,8 +260,3 @@ input#options {
     height: 80%;
 }
 
-.options {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}

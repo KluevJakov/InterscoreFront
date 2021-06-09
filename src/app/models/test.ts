@@ -6,7 +6,7 @@ export class Test{
     public isAccepted?: boolean;
     public name?: string;
     public discribtion?: string;
-    public options?: Option[];
+    public options?: Array<Option>;
     public categories?: Category[];
 
     constructor();
