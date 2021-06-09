@@ -16,9 +16,36 @@ export class ProfileComponent implements OnInit {
   public isAuth = false;
   public isAdmin = false;
   public currentUser = false;
+  public isImage = false;
+  public fileToUpload!: string;
   //private error = "";
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private userService: UserService, private storageService: StorageService) { }
+
+  handleFileInput(event?: Event) {
+    this.fileToUpload = (<HTMLInputElement>event?.target).value;
+
+    const img = new Image();
+    img.onload = () => { 
+      this.uploadFileToActivity();
+      document.getElementById("AddImage")!.style.border = "2px solid green";
+    }
+    img.onerror = () => {
+      document.getElementById("AddImage")!.style.border = "2px solid red";
+    }
+    img.src = this.fileToUpload;
+  }
+
+  uploadFileToActivity() {
+    this.userService.postFile(this.fileToUpload,this.storageService.getUser().id).subscribe(
+      response => {
+        alert(response);
+        window.location.reload();
+      }, error => {
+        console.log(error);
+        window.location.reload();
+      });
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id') || "1";

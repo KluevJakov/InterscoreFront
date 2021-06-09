@@ -7,11 +7,8 @@
         <h2>Interviewee Profile</h2>
         <div id="secs">
             <div class="sections" id="section1">
-                <img src="{{user.photo}}" alt="Изображение профиля">
-                <label style="display: {{currentUser ? 'flex' : 'none'}}" for="AddImage" class="customFileUpload">
-                    Upload Photo
-                </label>
-                <input style="display: {{currentUser ? 'flex' : 'none'}}" type="file" name="AddImage" id="AddImage" accept="image/*"/>
+                <img style="display: {{currentUser ? 'flex' : 'none'}}" src="{{user.photo}}" id="photoStyle" alt="Изображение профиля">
+                <input placeholder="Ссылка на фото профиля" (change)="handleFileInput($event)" style="display: {{currentUser ? 'flex' : 'none'}}" type="text" name="AddImage" id="AddImage" />
                 <ul>
                     <li>{{user.surname}} {{user.name}} {{user.patronymic}}</li>
                     <li>{{user.birthday}}</li>

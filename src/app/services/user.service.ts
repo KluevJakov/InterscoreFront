@@ -20,4 +20,8 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(API_URL + '/getAllUsers');
   }
+
+  postFile(fileToUpload: string, idUser :number): Observable<any> {
+    return this.http.post(API_URL + '/uploadFile/'+idUser, fileToUpload);
+  }
 }

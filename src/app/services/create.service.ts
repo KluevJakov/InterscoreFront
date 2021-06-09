@@ -19,7 +19,7 @@ export class CreateService {
 
   createPoll(poll: Poll): Observable<any> {
     if(poll && poll.tests && poll.tests[0].options){
-      alert(poll.tests[0].options[0].isTrue);
+      //alert(poll.tests[0].options[0].isTrue);
       poll.interviewee_id = this.storageService.getUser().id;
     }
     return this.http.post<any>(API_URL + '/pollCreate', poll);
