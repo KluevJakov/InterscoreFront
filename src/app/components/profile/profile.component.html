@@ -7,7 +7,7 @@
         <h2>Interviewee Profile</h2>
         <div id="secs">
             <div class="sections" id="section1">
-                <img style="display: {{currentUser ? 'flex' : 'none'}}" src="{{user.photo}}" id="photoStyle" alt="Изображение профиля">
+                <img src="{{user.photo}}" id="photoStyle" alt="Изображение профиля">
                 <input placeholder="Ссылка на фото профиля" (change)="handleFileInput($event)" style="display: {{currentUser ? 'flex' : 'none'}}" type="text" name="AddImage" id="AddImage" />
                 <ul>
                     <li>{{user.surname}} {{user.name}} {{user.patronymic}}</li>
@@ -38,10 +38,22 @@
             <div style="display: {{isAdmin && currentUser ? 'flex' : 'none'}}" class="sections" id="section4">
                 <h3>My Categories</h3>
                 <hr>
-                <div style="display: {{currentUser ? 'flex' : 'none'}}" class="plusContainer">
-                    <div class="export" id="exportPolls">e</div>
-                    <div class="plus" onclick="location.href = '/createPoll'" id="plusPolls">+</div>
-                </div>
+                <label>
+                    Родительская категория
+                </label>
+                <select id="categoryList">
+
+                </select>
+                <input placeholder="Название категории" type="text" name="category" id="category" />
+                <input type="submit" name="subCategory" id="subCategory" (click)="setCategory($event)"/>
+                <hr>
+                <label>
+                    Удалить категорию
+                </label>
+                <select id="categoryListForDelete">
+
+                </select>
+                <input type="submit" name="delCategory" id="delCategory" (click)="delCategory($event)"/>
             </div>
         </div>
     </div>

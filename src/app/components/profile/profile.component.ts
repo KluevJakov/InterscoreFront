@@ -36,6 +36,18 @@ export class ProfileComponent implements OnInit {
     img.src = this.fileToUpload;
   }
 
+  setCategory(event?: Event) {
+    alert((<HTMLInputElement>document.getElementById("categoryList")).value);
+    alert((<HTMLInputElement>document.getElementById("category")).value);
+    //this.fileToUpload = (<HTMLInputElement>event?.target).value;
+  }
+
+  delCategory(event?: Event) {
+    alert((<HTMLInputElement>document.getElementById("categoryList")).value);
+    alert((<HTMLInputElement>document.getElementById("category")).value);
+    //this.fileToUpload = (<HTMLInputElement>event?.target).value;
+  }
+
   uploadFileToActivity() {
     this.userService.postFile(this.fileToUpload,this.storageService.getUser().id).subscribe(
       response => {
