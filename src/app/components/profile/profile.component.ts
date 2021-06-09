@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Role } from 'src/app/models/role';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -13,6 +14,8 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
   user: User = {} as User;
   public isAuth = false;
+  public isAdmin = false;
+  public currentUser = false;
   //private error = "";
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private userService: UserService, private storageService: StorageService) { }
@@ -27,6 +30,16 @@ export class ProfileComponent implements OnInit {
     });
     if(this.storageService.getUser() != null){
       this.isAuth = true;
+    }
+    if(this.storageService.getUser() != null){
+      if(this.storageService.getUser().role.toString() == Role[0].toString()){
+        this.isAdmin = true;
+      }
+    }
+    if(this.storageService.getUser() != null){
+      if(this.storageService.getUser().id.toString() == id){
+        this.currentUser = true;
+      }
     }
   }
 

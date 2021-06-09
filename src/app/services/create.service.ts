@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Poll } from '../models/poll';
 import {environment} from '../../environments/environment';
+import { UserService } from './user.service';
+import { StorageService } from './storage.service';
 
 const API_URL: string = environment.apiUrl;
 
@@ -12,10 +14,14 @@ const API_URL: string = environment.apiUrl;
 })
 export class CreateService {
   constructor(private http: HttpClient,
+    private storageService: StorageService,
     private router: Router) { }
 
   createPoll(poll: Poll): Observable<any> {
-    alert(poll);
+    if(poll && poll.tests && poll.tests[0].options){
+      alert(poll.tests[0].options[0].isTrue);
+      poll.interviewee_id = this.storageService.getUser().id;
+    }
     return this.http.post<any>(API_URL + '/pollCreate', poll);
   }
 }

@@ -8,10 +8,10 @@
         <div id="secs">
             <div class="sections" id="section1">
                 <img src="{{user.photo}}" alt="Изображение профиля">
-                <label for="AddImage" class="customFileUpload">
+                <label style="display: {{currentUser ? 'flex' : 'none'}}" for="AddImage" class="customFileUpload">
                     Upload Photo
                 </label>
-                <input type="file" name="AddImage" id="AddImage" accept="image/*"/>
+                <input style="display: {{currentUser ? 'flex' : 'none'}}" type="file" name="AddImage" id="AddImage" accept="image/*"/>
                 <ul>
                     <li>{{user.surname}} {{user.name}} {{user.patronymic}}</li>
                     <li>{{user.birthday}}</li>
@@ -20,12 +20,12 @@
                     <li>{{user.email}}</li>
                     <li></li>
                 </ul>
-                <p>Edit profile</p>
+                <p style="display: {{currentUser ? 'flex' : 'none'}}">Edit profile</p>
             </div>
             <div class="sections" id="section2">
                 <h3>My Interviews</h3>
                 <hr>
-                <div class="plusContainer">
+                <div style="display: {{isAdmin && currentUser ? 'flex' : 'none'}}" class="plusContainer">
                     <div class="export" id="exportInterview">e</div>
                     <div class="plus" onclick="location.href = '/createInterview'" id="plusInterview">+</div>
                 </div>
@@ -33,7 +33,15 @@
             <div class="sections" id="section3">
                 <h3>My Polls</h3>
                 <hr>
-                <div class="plusContainer">
+                <div style="display: {{isAdmin && currentUser ? 'flex' : 'none'}}" class="plusContainer">
+                    <div class="export" id="exportPolls">e</div>
+                    <div class="plus" onclick="location.href = '/createPoll'" id="plusPolls">+</div>
+                </div>
+            </div>
+            <div style="display: {{isAdmin && currentUser ? 'flex' : 'none'}}" class="sections" id="section4">
+                <h3>My Categories</h3>
+                <hr>
+                <div style="display: {{currentUser ? 'flex' : 'none'}}" class="plusContainer">
                     <div class="export" id="exportPolls">e</div>
                     <div class="plus" onclick="location.href = '/createPoll'" id="plusPolls">+</div>
                 </div>

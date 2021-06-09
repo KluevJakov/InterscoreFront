@@ -1,5 +1,5 @@
 export enum Role{
-    ADMIN,
-    USER,
-    INTERVIEWER
+    ROLE_ADMIN,
+    ROLE_USER,
+    ROLE_INTERVIEWER
 }
