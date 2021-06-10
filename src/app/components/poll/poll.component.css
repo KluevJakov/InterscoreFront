@@ -140,11 +140,12 @@ a:hover{
 }
 
 div#questions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .quest {
@@ -152,11 +153,30 @@ div#questions {
     padding: 20px;
     width: 80%;
     background: #ffffff4d;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 } 
 
 .upper {
     font-size: x-large;
     justify-content: space-between;
     display: flex;
+}
+
+button {
+    width: 300px;
+    height: 50px;
+    background-color: #ffffff00;
+    border: 4px solid white;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: x-large;
+    margin-bottom: 7%;
+    transition: .6s;
+}
+
+button:hover{
+    background-color: white;
+    border: 4px solid #5b8693;
+    color: #5b8693;
+    transition: .6s;
 }

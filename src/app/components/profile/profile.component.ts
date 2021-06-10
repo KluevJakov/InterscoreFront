@@ -65,8 +65,9 @@ export class ProfileComponent implements OnInit {
       .subscribe(
       error => {
         console.log(error);
-        window.location.reload();
+        //window.location.reload();
       });
+    window.location.reload();
   }
 
   /* Удаление категории */
@@ -120,7 +121,7 @@ export class ProfileComponent implements OnInit {
     this.createService.getMyPolls(this.storageService.getUser().id!).subscribe(response => {
       response.forEach(u => {
         let isAccepted = "";
-        if(u.is_accepted){
+        if(u.accepted){
           isAccepted = "Пройдено";
         }else{
           isAccepted = "Не пройдено";

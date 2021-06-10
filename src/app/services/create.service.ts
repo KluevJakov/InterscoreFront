@@ -22,6 +22,10 @@ export class CreateService {
     return this.http.post<any>(API_URL + '/pollCreate', poll);
   }
 
+  answerPoll(poll: Poll): Observable<any> {
+    return this.http.post<any>(API_URL + '/answerPoll', poll);
+  }
+
   categoryCreate(cat: Category): Observable<any> {
     return this.http.post<any>(API_URL + '/categoryCreate', cat);
   }

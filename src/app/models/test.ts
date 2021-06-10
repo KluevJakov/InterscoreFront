@@ -3,7 +3,7 @@ import { Option } from 'src/app/models/option';
 
 export class Test{
     public id?: number;
-    public isAccepted?: boolean;
+    public accepted?: boolean;
     public name?: string;
     public discribtion?: string;
     public options?: Array<Option>;
@@ -12,10 +12,10 @@ export class Test{
     constructor();
     constructor(data?: any);
     constructor(data?: any) {
-      this.id = data?.id; //auto
-      this.isAccepted = data?.isAccepted;
-      this.name = data?.name; //+
-      this.discribtion = data?.discribtion; //+
+      this.id = data?.id;
+      this.accepted = data?.accepted;
+      this.name = data?.name; 
+      this.discribtion = data?.discribtion; 
       this.options = data?.options;
       this.category = data?.category;
     }

@@ -3,9 +3,9 @@ import { User } from "./user";
 
 export class Poll{
     id?: number;
-    is_accepted?: boolean;
-    createDate?: string;
     name?: string;
+    accepted?: boolean;
+    createDate?: string;
     interviewer?: User;
     interviewee?: User;
     tests?: Array<Test>;
@@ -14,7 +14,7 @@ export class Poll{
     constructor(data?: any);
     constructor(data?: any) {
       this.id = data?.id; 
-      this.is_accepted = data?.is_accepted;
+      this.accepted = data?.accepted;
       this.createDate = data?.createDate;
       this.name = data?.name; 
       this.interviewee = data?.interviewee;
