@@ -13,7 +13,7 @@ import { Role } from 'src/app/models/role';
   selector: 'app-create-poll',
   templateUrl: './create-poll.component.html',
   styleUrls: ['./create-poll.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class CreatePollComponent implements OnInit {
   user: User = {} as User;

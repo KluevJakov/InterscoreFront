@@ -126,10 +126,6 @@ hr {
     width: 100%;
 }
 
-#bio {
-
-}
-
 .plusContainer {
     width: 140px;
     height: 70px;
@@ -297,4 +293,14 @@ p.datePoll {
 
 p.whoPoll {
     font-size: xx-small;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #b4b8b9
 }

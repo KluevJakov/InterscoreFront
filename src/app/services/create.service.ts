@@ -33,4 +33,8 @@ export class CreateService {
   getMyPolls(id: number): Observable<Poll[]> {
     return this.http.get<Poll[]>(API_URL + '/getMyPolls/'+id);
   }
+
+  pollPage(id: number): Observable<Poll> {
+    return this.http.get<Poll>(API_URL + '/poll/' + id);
+  }
 }

@@ -1,0 +1,35 @@
+<div id="header">
+    <h2><a href="/">Interscore</a></h2>
+    <div id="bio"><h2><a href="/profile/{{user.id}}">{{user.email}}</a> | <a style="display: {{isAuth ? 'unset' : 'none'}}" id="logout" href="#" (click)="logout()">Logout</a></h2></div>
+</div>
+<div id="content">
+    <div id="profile">
+        <h2>Poll - {{poll.name}}</h2>
+        <div id="secs">
+            <div class="sections" id="section1">
+                <h3>Information</h3>
+                <hr>
+                <ul>
+                    <li><div class="customText">Title:</div> {{poll.name}}</li>
+                    <li><div class="customText">Date:</div> {{poll.createDate}}</li>
+                    <li><div class="customText">Interviewer:</div> <a href="/profile/{{poll.interviewer?.id}}">{{poll.interviewer?.surname}} {{poll.interviewer?.name}} {{poll.interviewer?.patronymic}}</a></li>
+                    <li><div class="customText">Interviewee:</div> <a href="/profile/{{poll.interviewee?.id}}">{{poll.interviewee?.surname}} {{poll.interviewee?.name}} {{poll.interviewee?.patronymic}}</a></li>
+                    <li><div class="customText">Question count:</div> {{poll.tests?.length}}</li>
+                    <li><div class="customText">Accepted:</div> {{isAccepted}}</li>
+                </ul>
+                <p style="display: {{currentUser ? 'flex' : 'none'}}">Edit profile</p>
+            </div>
+            <div class="sections" id="section2">
+                <h3>Questions</h3>
+                <hr>
+                <div id="questions">
+                    
+                </div>
+                <div style="display: {{isAdmin && currentUser ? 'flex' : 'none'}}" class="plusContainer">
+                    <div class="export" id="exportInterview">e</div>
+                    <div class="plus" onclick="location.href = '/createInterview'" id="plusInterview">+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CreatePollComponent } from './components/create-poll/create-poll.component';
 import { CreateInterviewComponent } from './components/create-interview/create-interview.component';
+import { PollComponent } from './components/poll/poll.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CreateInterviewComponent } from './components/create-interview/create-i
     HomeComponent,
     ProfileComponent,
     CreatePollComponent,
-    CreateInterviewComponent
+    CreateInterviewComponent,
+    PollComponent
   ],
   imports: [
     BrowserModule,

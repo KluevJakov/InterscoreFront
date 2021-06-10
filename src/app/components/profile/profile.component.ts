@@ -12,10 +12,11 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class ProfileComponent implements OnInit {
   user: User = {} as User;
+  authUser: User = {} as User;
   catList: Array<Category> = new Array();
   public isAuth = false;
   public isAdmin = false;
@@ -62,9 +63,7 @@ export class ProfileComponent implements OnInit {
     category.parent = rootCategory;
     this.createService.categoryCreate(category)
       .subscribe(
-        response => {
-        alert("ok");
-      }, error => {
+      error => {
         console.log(error);
         window.location.reload();
       });
@@ -85,6 +84,8 @@ export class ProfileComponent implements OnInit {
     error =>{
       //alert(error.error);
     });
+
+    this.authUser = this.storageService.getUser();
 
     /* Проверки разграничения доступа */
     if(this.storageService.getUser() != null){
@@ -124,7 +125,7 @@ export class ProfileComponent implements OnInit {
         }else{
           isAccepted = "Не пройдено";
         }
-        pollList!.innerHTML += "<div class=\"pollDiv\"><p>"+u.name+"</p><p class=\"datePoll\">"+isAccepted+"</p><p class=\"datePoll\">"+u.createDate+"</p><p class=\"whoPoll\">Выдан для: <a href=\"/profile/"+u.interviewee?.id+"\">"+u.interviewee?.surname+" "+u.interviewee?.name+" "+u.interviewee?.patronymic+"</a></p></div>";
+        pollList!.innerHTML += "<div class=\"pollDiv\"><p><a href=\"/poll/"+u.id+"\">"+u.name+"</a></p><p class=\"datePoll\">"+isAccepted+"</p><p class=\"datePoll\">"+u.createDate+"</p><p class=\"whoPoll\">Выдан для: <a href=\"/profile/"+u.interviewee?.id+"\">"+u.interviewee?.surname+" "+u.interviewee?.name+" "+u.interviewee?.patronymic+"</a></p></div>";
       });
     });
   }

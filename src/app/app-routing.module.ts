@@ -4,6 +4,7 @@ import { CreateInterviewComponent } from './components/create-interview/create-i
 import { CreatePollComponent } from './components/create-poll/create-poll.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { PollComponent } from './components/poll/poll.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'profile/:id', component: ProfileComponent},
   {path: 'createInterview', component: CreateInterviewComponent},
-  {path: 'createPoll', component: CreatePollComponent}
+  {path: 'createPoll', component: CreatePollComponent},
+  {path: 'poll/:id', component: PollComponent}
 ];
 
 @NgModule({
