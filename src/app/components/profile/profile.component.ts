@@ -114,12 +114,17 @@ export class ProfileComponent implements OnInit {
       });
     });
 
-    //alert(this.storageService.getUser().id);
     /* Отображение выданных опросов */
     let pollList = document.getElementById("pollList");
     this.createService.getMyPolls(this.storageService.getUser().id!).subscribe(response => {
       response.forEach(u => {
-        pollList!.innerHTML += "<div class=\"pollDiv\">"+u.name+"</div>";
+        let isAccepted = "";
+        if(u.is_accepted){
+          isAccepted = "Пройдено";
+        }else{
+          isAccepted = "Не пройдено";
+        }
+        pollList!.innerHTML += "<div class=\"pollDiv\"><p>"+u.name+"</p><p class=\"datePoll\">"+isAccepted+"</p><p class=\"datePoll\">"+u.createDate+"</p><p class=\"whoPoll\">Выдан для: <a href=\"/profile/"+u.interviewee?.id+"\">"+u.interviewee?.surname+" "+u.interviewee?.name+" "+u.interviewee?.patronymic+"</a></p></div>";
       });
     });
   }

@@ -51,15 +51,13 @@ export class CreatePollComponent implements OnInit {
   createPoll(): void{
     this.currentPoll.name =  (<HTMLInputElement>document.getElementById("nameOfPoll")).value;
     this.currentPoll.tests = this.testList;
+    this.currentPoll.createDate = new Date().toUTCString().toString();
     let interviewee = new User();
     let interviewer = new User();
     interviewee.id = parseInt((<HTMLInputElement>document.getElementById("usersList")).value);
     interviewer.id = this.user.id;
     this.currentPoll.interviewee = interviewee;
     this.currentPoll.interviewer = interviewer;
-
-    //alert(this.currentPoll.interviewee_id.id);
-    //alert(this.currentPoll.interviewer_id.id);
 
     this.createService.createPoll(this.currentPoll)
       .subscribe(
@@ -160,9 +158,8 @@ export class CreatePollComponent implements OnInit {
     let questions = document.getElementById("questions");
     questions!.innerHTML+= "<div class='quest'>"+
       "<div class='upper'><input type='text' class='pollTitle' placeholder='Название вопроса' name='title'>"+
-      "<select class='categoryList'></select> </div>"+
+      "<select class='categoryList'></select> <input type='number' class='opts' name='opts' min='2' max='8'></div>"+
       "<div class='downer'><textarea class='discrPoll' placeholder='Описание вопроса' name='discription'></textarea>"+
-      "<input type='number' class='opts' name='opts' min='2' max='8'>"+
       "</div><div class='options'></div>"+
       "</div>";
 

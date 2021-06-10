@@ -270,16 +270,31 @@ div#section4 {
 
 div#pollList {
     width: 92%;
-    height: 60%;
-    display: flex;
+    height: 243px;
+    overflow-y: auto;
     flex-direction: column;
     padding: 0 10px 10px 10px;
 }
 .pollDiv {
     background: white;
     color: #485a5f;
-    height: 60px;
+    height: 72px;
     width: 95%;
     margin-top: 10px;
     padding: 5px;
+}
+
+.pollDiv p{
+    margin: 0;
+    font-weight: bold;
+    color: #253236;
+}
+
+p.datePoll {
+    font-size: small;
+    color: #6f787b;
+}
+
+p.whoPoll {
+    font-size: xx-small;
 }
