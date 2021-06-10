@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Category } from 'src/app/models/category';
 import { Role } from 'src/app/models/role';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,6 +16,7 @@ export class ProfileComponent implements OnInit {
   user: User = {} as User;
   public isAuth = false;
   public isAdmin = false;
+  public inter = "";
   public currentUser = false;
   public isImage = false;
   public fileToUpload!: string;
@@ -37,9 +39,9 @@ export class ProfileComponent implements OnInit {
   }
 
   setCategory(event?: Event) {
-    alert((<HTMLInputElement>document.getElementById("categoryList")).value);
-    alert((<HTMLInputElement>document.getElementById("category")).value);
-    //this.fileToUpload = (<HTMLInputElement>event?.target).value;
+    let category = new Category();
+    category.name = (<HTMLInputElement>document.getElementById("category")).value;
+    //category.parent = 
   }
 
   delCategory(event?: Event) {
@@ -73,6 +75,9 @@ export class ProfileComponent implements OnInit {
     if(this.storageService.getUser() != null){
       if(this.storageService.getUser().role.toString() == Role[0].toString()){
         this.isAdmin = true;
+        this.inter = "Interviewer";
+      }else{
+        this.inter = "Interviewee";
       }
     }
     if(this.storageService.getUser() != null){

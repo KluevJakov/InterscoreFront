@@ -203,25 +203,25 @@ input#AddImage {
     border: 4px solid white;
     color: #000000;
     font-family: 'Nunito', sans-serif;
-    font-size: x-large;
+    font-size: medium;
     margin-top: 3%;
     transition: .6s;
 }
 
 input#subCategory {
     width: 80%;
-    height: 46px;
+    height: 40px;
     border: 4px solid white;
     color: #000000;
     font-family: 'Nunito', sans-serif;
-    font-size: x-large;
+    font-size: larger;
     margin-top: 3%;
     transition: .6s;
 }
 
 input#category {
     width: 90%;
-    height: 43px;
+    height: 30px;
     border: 4px solid white;
     color: #000000;
     font-family: 'Nunito', sans-serif;
@@ -232,7 +232,7 @@ input#category {
 
 select#categoryList {
     width: 95%;
-    height: 46px;
+    height: 40px;
     border: 4px solid white;
     color: #000000;
     font-family: 'Nunito', sans-serif;
@@ -244,4 +244,26 @@ select#categoryList {
 div#section4 {
     display: flex;
     align-items: center;
+}
+
+#categoryListForDelete{
+    width: 95%;
+    height: 40px;
+    border: 4px solid white;
+    color: #000000;
+    font-family: 'Nunito', sans-serif;
+    font-size: large;
+    margin-top: 3%;
+    transition: .6s;
+}
+
+#delCategory{
+    width: 80%;
+    height: 40px;
+    border: 4px solid white;
+    color: #000000;
+    font-family: 'Nunito', sans-serif;
+    font-size: larger;
+    margin-top: 3%;
+    transition: .6s;
 }

@@ -4,7 +4,7 @@
 </div>
 <div id="content">
     <div id="profile">
-        <h2>Interviewee Profile</h2>
+        <h2>{{inter}} Profile</h2>
         <div id="secs">
             <div class="sections" id="section1">
                 <img src="{{user.photo}}" id="photoStyle" alt="Изображение профиля">
@@ -45,7 +45,7 @@
 
                 </select>
                 <input placeholder="Название категории" type="text" name="category" id="category" />
-                <input type="submit" name="subCategory" id="subCategory" (click)="setCategory($event)"/>
+                <input type="submit" value="Создать категорию" name="subCategory" id="subCategory" (click)="setCategory($event)"/>
                 <hr>
                 <label>
                     Удалить категорию
@@ -53,7 +53,7 @@
                 <select id="categoryListForDelete">
 
                 </select>
-                <input type="submit" name="delCategory" id="delCategory" (click)="delCategory($event)"/>
+                <input type="submit" value="Удалить категорию" name="delCategory" id="delCategory" (click)="delCategory($event)"/>
             </div>
         </div>
     </div>
