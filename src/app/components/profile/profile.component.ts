@@ -117,18 +117,47 @@ export class ProfileComponent implements OnInit {
     });
 
     /* Отображение выданных опросов */
-    let pollList = document.getElementById("pollList");
-    this.createService.getMyPolls(this.storageService.getUser().id!).subscribe(response => {
-      response.forEach(u => {
-        let isAccepted = "";
-        if(u.accepted){
-          isAccepted = "Пройдено";
-        }else{
-          isAccepted = "Не пройдено";
-        }
-        pollList!.innerHTML += "<div class=\"pollDiv\"><p><a href=\"/poll/"+u.id+"\">"+u.name+"</a></p><p class=\"datePoll\">"+isAccepted+"</p><p class=\"datePoll\">"+u.createDate+"</p><p class=\"whoPoll\">Выдан для: <a href=\"/profile/"+u.interviewee?.id+"\">"+u.interviewee?.surname+" "+u.interviewee?.name+" "+u.interviewee?.patronymic+"</a></p></div>";
+    if((this.storageService.getUser().role?.toString()) == Role[0].toString()){
+      let pollList = document.getElementById("pollList");
+      this.createService.getMyPolls(this.storageService.getUser().id!).subscribe(response => {
+        response.forEach(u => {
+          let isAccepted = "";
+          if(u.accepted){
+            let trueAnswers = 0;
+            Array.from(u.tests!).forEach(el => {
+              if(el.accepted){
+                trueAnswers++;
+              }
+            });
+            let allAnswers = u.tests?.length;
+            isAccepted = "Пройдено ("+trueAnswers+"/"+allAnswers+")";
+          }else{
+            isAccepted = "Не пройдено";
+          }
+          pollList!.innerHTML += "<div class=\"pollDiv\"><p><a href=\"/poll/"+u.id+"\">"+u.name+"</a></p><p class=\"datePoll\">"+isAccepted+"</p><p class=\"datePoll\">"+u.createDate+"</p><p class=\"whoPoll\">Выдан для: <a href=\"/profile/"+u.interviewee?.id+"\">"+u.interviewee?.surname+" "+u.interviewee?.name+" "+u.interviewee?.patronymic+"</a></p></div>";
+        });
       });
-    });
+    }else{
+      let pollList = document.getElementById("pollList");
+      this.createService.getMyPollsUser(this.storageService.getUser().id!).subscribe(response => {
+        response.forEach(u => {
+          let isAccepted = "";
+          if(u.accepted){
+            let trueAnswers = 0;
+            Array.from(u.tests!).forEach(el => {
+              if(el.accepted){
+                trueAnswers++;
+              }
+            });
+            let allAnswers = u.tests?.length;
+            isAccepted = "Пройдено ("+trueAnswers+"/"+allAnswers+")";
+          }else{
+            isAccepted = "Не пройдено";
+          }
+          pollList!.innerHTML += "<div class=\"pollDiv\"><p><a href=\"/poll/"+u.id+"\">"+u.name+"</a></p><p class=\"datePoll\">"+isAccepted+"</p><p class=\"datePoll\">"+u.createDate+"</p><p class=\"whoPoll\">Выдан для: <a href=\"/profile/"+u.interviewee?.id+"\">"+u.interviewee?.surname+" "+u.interviewee?.name+" "+u.interviewee?.patronymic+"</a></p></div>";
+        });
+      });
+    }
   }
 
   logout(): void {

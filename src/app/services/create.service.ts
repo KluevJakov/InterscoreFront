@@ -34,6 +34,10 @@ export class CreateService {
     return this.http.get<Category[]>(API_URL + '/getAllCategories');
   }
 
+  getMyPollsUser(id: number): Observable<Poll[]> {
+    return this.http.get<Poll[]>(API_URL + '/getMyPollsUser/'+id);
+  }
+
   getMyPolls(id: number): Observable<Poll[]> {
     return this.http.get<Poll[]>(API_URL + '/getMyPolls/'+id);
   }

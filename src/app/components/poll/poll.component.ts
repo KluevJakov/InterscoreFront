@@ -33,17 +33,24 @@ export class PollComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id') || "1";
     this.createService.pollPage(parseInt(id)).subscribe(response => {
       this.poll = response;
-      if(this.poll.accepted){
-        this.isAccepted = "Пройдено";
-        let questionList = document.getElementById("questions");
-        let trueAnswers = 0;
-        Array.from(this.poll.tests!).forEach(el => {
-          if(el.accepted){
-            trueAnswers++;
-          }
-        });
-        let allAnswers = this.poll.tests?.length;
-        questionList!.innerHTML += trueAnswers+"/"+allAnswers;
+      //alert(this.user.id + " " + this.poll.interviewee?.id);
+      if(this.poll.accepted || (this.user.id == this.poll.interviewer?.id)){
+        if(this.user.id == this.poll.interviewer?.id && !this.poll.accepted){
+          this.isAccepted = "Не пройдено";
+          let questionList = document.getElementById("questions");
+          questionList!.innerHTML += "Опрос ещё не пройден";
+        }else{
+          this.isAccepted = "Пройдено";
+          let questionList = document.getElementById("questions");
+          let trueAnswers = 0;
+          Array.from(this.poll.tests!).forEach(el => {
+            if(el.accepted){
+              trueAnswers++;
+            }
+          });
+          let allAnswers = this.poll.tests?.length;
+          questionList!.innerHTML += "Результаты опроса: "+trueAnswers+"/"+allAnswers;
+        }
       }else{
         this.isAccepted = "Не пройдено";
       let questionList = document.getElementById("questions");
