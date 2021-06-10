@@ -7,7 +7,7 @@ export class Test{
     public name?: string;
     public discribtion?: string;
     public options?: Array<Option>;
-    public categories?: Category[];
+    public category?: string;
 
     constructor();
     constructor(data?: any);
@@ -17,6 +17,6 @@ export class Test{
       this.name = data?.name; //+
       this.discribtion = data?.discribtion; //+
       this.options = data?.options;
-      this.categories = data?.categories;
+      this.category = data?.category;
     }
   }

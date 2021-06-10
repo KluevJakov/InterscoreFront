@@ -6,6 +6,8 @@ import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
 import { Poll } from 'src/app/models/poll';
 import { CreateService } from 'src/app/services/create.service';
+import { Category } from 'src/app/models/category';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-create-poll',
@@ -16,6 +18,7 @@ export class CreatePollComponent implements OnInit {
   user: User = {} as User;
   userList: Array<User> = new Array();
   testList: Array<Test> = new Array();
+  catList: Array<Category> = new Array();
   currentPoll: Poll = new Poll();
   count = 0;
 
@@ -27,8 +30,16 @@ export class CreatePollComponent implements OnInit {
 
     this.userService.getAllUsers().subscribe(response => {
       response.forEach(u => {
-        this.userList.push(u)
-        list!.innerHTML += "<option value=\"1\">"+u.surname+" "+u.name+" "+u.patronymic +"</option>";
+        if(u.role?.toString() == Role[1].toString()){
+          this.userList.push(u);
+          list!.innerHTML += "<option value=\""+u.id+"\">"+u.surname+" "+u.name+" "+u.patronymic +"</option>";
+        }
+      });
+    });
+
+    this.createService.getAllCategories().subscribe(response => {
+      response.forEach(u => {
+        this.catList.push(u);
       });
     });
 
@@ -39,21 +50,39 @@ export class CreatePollComponent implements OnInit {
   createPoll(): void{
     this.currentPoll.name =  (<HTMLInputElement>document.getElementById("nameOfPoll")).value;
     this.currentPoll.tests = this.testList;
-    //this.currentPoll.interviewee_id =  (<HTMLInputElement>document.getElementById("nameOfPoll")).value;
+    let interviewee = new User();
+    let interviewer = new User();
+    interviewee.id = parseInt((<HTMLInputElement>document.getElementById("usersList")).value);
+    interviewer.id = this.user.id;
+    this.currentPoll.interviewee = interviewee;
+    this.currentPoll.interviewer = interviewer;
+
+    //alert(this.currentPoll.interviewee_id.id);
+    //alert(this.currentPoll.interviewer_id.id);
 
     this.createService.createPoll(this.currentPoll)
       .subscribe(
         response => {
         //this.storageService.saveUser(new User(response));
         //this.router.navigate(['/']).then(() => location.reload());
+      }, error => {
+        console.log(error);
+        window.location.href = "/profile/"+this.user.id;
       });
   }
 
   updateQuestion(): void{
+
+    let categoryList = document.getElementsByClassName("categoryList")[this.count];
+    this.catList.forEach(u=>{
+      categoryList!.innerHTML += "<option value=\""+u.name+"\">"+u.name+"</option>";
+    });
+
     for(let i=0;i<this.testList.length;i++){
       (<HTMLInputElement>document.getElementsByClassName('pollTitle')[i]).value = this.testList[i].name as string;
       (<HTMLInputElement>document.getElementsByClassName('discrPoll')[i]).value = this.testList[i].discribtion as string;
       (<HTMLInputElement>document.getElementsByClassName('opts')[i]).value = this.testList[i].options?.length.toString() as string;
+      (<HTMLInputElement>document.getElementsByClassName('categoryList')[i]).value = this.testList[i].category as string;
 
       for(let k=0;k<this.count;k++){
         for(let h=0;h<this.testList[k].options!.length;h++){
@@ -84,11 +113,10 @@ export class CreatePollComponent implements OnInit {
       });
     });
 
-    document.querySelectorAll('.usersList').forEach((item) => {
+    document.querySelectorAll('.categoryList').forEach((item) => {
       item.addEventListener('change', (e: any) =>{
-        //alert("!");
-        //let currentIndex = Array.from(document.getElementsByClassName('discrPoll')).indexOf(e.target);
-        //this.testList[currentIndex].discribtion = e.target.value;
+        let currentIndex = Array.from(document.getElementsByClassName('categoryList')).indexOf(e.target);
+        this.testList[currentIndex].category = e.target.value;
       });
     });
 
@@ -132,7 +160,7 @@ export class CreatePollComponent implements OnInit {
     let questions = document.getElementById("questions");
     questions!.innerHTML+= "<div class='quest'>"+
       "<div class='upper'><input type='text' class='pollTitle' placeholder='Название вопроса' name='title'>"+
-      "<select class='usersList'></select> </div>"+
+      "<select class='categoryList'></select> </div>"+
       "<div class='downer'><textarea class='discrPoll' placeholder='Описание вопроса' name='discription'></textarea>"+
       "<input type='number' class='opts' name='opts' min='2' max='8'>"+
       "</div><div class='options'></div>"+

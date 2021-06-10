@@ -267,3 +267,10 @@ div#section4 {
     margin-top: 3%;
     transition: .6s;
 }
+
+div#pollList {
+    width: 100%;
+    height: 63%;
+    display: flex;
+    justify-content: center;
+}

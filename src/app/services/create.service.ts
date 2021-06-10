@@ -6,6 +6,7 @@ import { Poll } from '../models/poll';
 import {environment} from '../../environments/environment';
 import { UserService } from './user.service';
 import { StorageService } from './storage.service';
+import { Category } from '../models/category';
 
 const API_URL: string = environment.apiUrl;
 
@@ -18,11 +19,14 @@ export class CreateService {
     private router: Router) { }
 
   createPoll(poll: Poll): Observable<any> {
-    if(poll && poll.tests && poll.tests[0].options){
-      poll.interviewee_id = this.storageService.getUser().id;
-    }
     return this.http.post<any>(API_URL + '/pollCreate', poll);
   }
 
-  
+  categoryCreate(cat: Category): Observable<any> {
+    return this.http.post<any>(API_URL + '/categoryCreate', cat);
+  }
+
+  getAllCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(API_URL + '/getAllCategories');
+  }
 }

@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     if(this.storageService.getUser() != null){
       this.isAuth = true;
-      this.currentId = this.storageService.getUser().id;
+      this.currentId = this.storageService.getUser().id as number;
     }
   }
 
