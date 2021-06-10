@@ -33,9 +33,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-              "src/assets/js/custom.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
