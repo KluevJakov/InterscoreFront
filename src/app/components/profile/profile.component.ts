@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/models/category';
 import { Role } from 'src/app/models/role';
@@ -11,7 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProfileComponent implements OnInit {
   user: User = {} as User;
@@ -110,6 +111,15 @@ export class ProfileComponent implements OnInit {
     this.createService.getAllCategories().subscribe(response => {
       response.forEach(u => {
         categoryList!.innerHTML += "<option value=\""+u.id+"\">"+u.name+"</option>";
+      });
+    });
+
+    //alert(this.storageService.getUser().id);
+    /* Отображение выданных опросов */
+    let pollList = document.getElementById("pollList");
+    this.createService.getMyPolls(this.storageService.getUser().id!).subscribe(response => {
+      response.forEach(u => {
+        pollList!.innerHTML += "<div class=\"pollDiv\">"+u.name+"</div>";
       });
     });
   }

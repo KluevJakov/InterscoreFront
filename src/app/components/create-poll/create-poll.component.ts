@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Test } from 'src/app/models/test';
 import { User } from 'src/app/models/user';
 import { Option } from 'src/app/models/option';
@@ -12,7 +12,8 @@ import { Role } from 'src/app/models/role';
 @Component({
   selector: 'app-create-poll',
   templateUrl: './create-poll.component.html',
-  styleUrls: ['./create-poll.component.css']
+  styleUrls: ['./create-poll.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CreatePollComponent implements OnInit {
   user: User = {} as User;
@@ -44,7 +45,7 @@ export class CreatePollComponent implements OnInit {
     });
 
     let questions = document.getElementById("questions");
-    questions!.innerHTML+= "<style>.discrPoll{width: 65%;} .downer {width: 100%;display: flex;justify-content: space-between;} .quest {height: 220px;border: 2px solid white;padding: 20px;width: 80%;background: #ffffff4d;margin-bottom: 30px;} .upper {display: flex;justify-content: space-between;margin-bottom: 15px;} .pollTitle{width: 40%;height: 35px;} .usersList {width: 40%;} .opts {width: 20%;height: 35px;}</style>";
+    //questions!.innerHTML+= "<style></style>";
   }
 
   createPoll(): void{
@@ -129,7 +130,6 @@ export class CreatePollComponent implements OnInit {
         for(let j=0;j<e.target.value;j++){
           this.testList[currentIndex].options?.push(new Option());
           optionList.innerHTML+= "<div><input name='radiogroup"+currentIndex+"' class='checkOpts' type='radio'>"+"<input type='text' class='pollOpts' placeholder='Вариант ответа' name='op"+currentIndex+"'></div>";
-          optionList.innerHTML+= "<style>input.pollOpts{width: 80%;height: 37px;} .options{justify-content: space-evenly;flex-direction: column;overflow-x: hidden;overflow-y: auto;height: 116px;margin-top: 15px;border: solid 2px;}</style>";
 
           document.querySelectorAll('.pollOpts').forEach((item1) => {
             item1.addEventListener('keyup', (e1: any) =>{

@@ -260,3 +260,55 @@ input#options {
     height: 80%;
 }
 
+.discrPoll{
+    width: 65%;
+} 
+
+.downer {
+    width: 100%;display: flex;justify-content: space-between;
+} 
+
+.quest {
+    height: 220px;border: 2px solid white;padding: 20px;width: 80%;background: #ffffff4d;margin-bottom: 30px;
+} 
+
+.upper {
+    display: flex;justify-content: space-between;margin-bottom: 15px;
+} 
+
+input[type="text"].pollTitle{
+    width: 40%;
+    height: 35px;
+    margin-bottom: 0;
+    font-size: larger;
+} 
+
+.usersList {
+    width: 40%;
+} 
+
+.opts {
+    width: 20%;height: 35px;
+}
+
+input.pollOpts{
+    width: 80%;
+    height: 37px;
+    font-size: large;
+    margin-bottom: 1%;
+} 
+.options{
+    justify-content: space-evenly;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100px;
+    margin-top: 15px;
+    padding: 1%;
+    border: solid 2px;
+}
+
+.categoryList {
+    width: 40%;
+    height: 46px;
+}
