@@ -35,6 +35,15 @@ export class PollComponent implements OnInit {
       this.poll = response;
       if(this.poll.accepted){
         this.isAccepted = "Пройдено";
+        let questionList = document.getElementById("questions");
+        let trueAnswers = 0;
+        Array.from(this.poll.tests!).forEach(el => {
+          if(el.accepted){
+            trueAnswers++;
+          }
+        });
+        let allAnswers = this.poll.tests?.length;
+        questionList!.innerHTML += trueAnswers+"/"+allAnswers;
       }else{
         this.isAccepted = "Не пройдено";
       let questionList = document.getElementById("questions");
