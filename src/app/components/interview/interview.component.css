@@ -124,7 +124,7 @@ hr{
 }
 
 .customText {
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
     color: #172429;
 }
@@ -179,4 +179,19 @@ button:hover{
     border: 4px solid #5b8693;
     color: #5b8693;
     transition: .6s;
+}
+
+input[type="text"] {
+    width: 90%;
+    height: 30px;
+    border: 4px solid white;
+    color: #000000;
+    font-family: 'Nunito', sans-serif;
+    font-size: x-large;
+    transition: .6s;
+}
+
+input[type="checkbox"] {
+    transform: scale(2);
+    margin-right: 18px;
 }

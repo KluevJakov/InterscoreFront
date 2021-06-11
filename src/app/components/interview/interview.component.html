@@ -11,6 +11,7 @@
                 <hr>
                 <ul>
                     <li><div class="customText">Title:</div> {{interview.name}}</li>
+                    <li><div class="customText">Place:</div> {{interview.place}}</li>
                     <li><div class="customText">Date:</div> {{interview.createDate}}</li>
                     <li><div class="customText">Interviewer:</div> <a href="/profile/{{interview.interviewer?.id}}">{{interview.interviewer?.surname}} {{interview.interviewer?.name}} {{interview.interviewer?.patronymic}}</a></li>
                     <li><div class="customText">Interviewee:</div> <a href="/profile/{{interview.interviewee?.id}}">{{interview.interviewee?.surname}} {{interview.interviewee?.name}} {{interview.interviewee?.patronymic}}</a></li>

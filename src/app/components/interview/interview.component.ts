@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Interview } from 'src/app/models/interview';
 import { User } from 'src/app/models/user';
@@ -10,7 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-interview',
   templateUrl: './interview.component.html',
-  styleUrls: ['./interview.component.css']
+  styleUrls: ['./interview.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class InterviewComponent implements OnInit {
   public checkedCount = 0;
@@ -55,53 +56,41 @@ export class InterviewComponent implements OnInit {
       this.interview.questions?.forEach(p => {
         questionList!.innerHTML += "<div class='quest'>"+
         "<div class='upper'><div>"+p.name+"</div><div>"+p.category+"</div></div>"+
-        "<div class='downer'>"+p.discribtion+" "+
-        "</div><div class='options'></div>"+
-        "</div>";
-
-        let currentOptions = document.getElementsByClassName("options")[count];
-        if(this.interview.questions != null){
-          let optsCount = 0;
-          /*
-          this.interview.questions[count].options?.forEach(o => {
-            currentOptions!.innerHTML += "<div><input name='radiogroup"+count+"' value='"+optsCount+"' class='checkOpts' type='radio'>"+o.text+"</div>";
-            optsCount++;
-          });
-          */
-        }
+        "<div class='downer'>"+p.discribtion+"</div>"+
+        "<input type='checkbox' class='checkOpts' value='accept'><input type='text' class='options' placeholder='Refine your response..'></div>";
         count++;
       });
 
       questionList!.innerHTML += "<button id=\"subPoll\">Submit</button>";
       document.getElementById("subPoll")?.addEventListener('click', (e: any) => {
         let checkCountAnswers = 0;
+        console.log(1);
         Array.from(document.querySelectorAll('.checkOpts')).forEach(p => {
-          
-          let questionNumber = Array.from(document.querySelectorAll('.options')).indexOf((<HTMLInputElement>p).parentElement!.parentElement!);
           let optionNumber = Array.from(document.querySelectorAll('.checkOpts')).indexOf((<HTMLInputElement>p));
 
           if((<HTMLInputElement>p).checked){
             if(this.interview.questions != null && this.interview.questions != undefined){
-              /*
-              if(this.interview.questions[questionNumber].options![optionNumber].isTrue){
-                  this.interview.questions[questionNumber].accepted = true;
-              }
-              */
-           }
+              this.interview.questions[optionNumber].accepted = true;
+            }
             checkCountAnswers++;
           }
         });
+        console.log(2);
+        Array.from(document.querySelectorAll('.options')).forEach(p => {
+          let questionNumber = Array.from(document.querySelectorAll('.options')).indexOf((<HTMLInputElement>p));
 
-        if(checkCountAnswers == this.interview.questions?.length){
-          this.interview.accepted = true;
-          this.createService.answerPoll(this.interview).subscribe(
-            error => {
-            console.log(error);
-          });
-          window.location.href = "/profile/"+this.user.id;
-        }else{
-          alert("Ответьте на все вопросы, для завершения теста");
-        }
+          if(this.interview.questions != null && this.interview.questions != undefined){
+            this.interview.questions[questionNumber].text = (<HTMLInputElement>document.querySelectorAll('.options')[questionNumber]).value;
+          }
+        });
+        console.log(3);
+        this.interview.accepted = true;
+        console.log(4);
+        this.createService.answerInterview(this.interview).subscribe(
+          error => {
+          console.log(error);
+        });
+        window.location.href = "/profile/"+this.user.id;
       }); 
     }
     });

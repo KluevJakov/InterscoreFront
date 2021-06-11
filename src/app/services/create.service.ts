@@ -24,8 +24,8 @@ export class CreateService {
     return this.http.post<any>(API_URL + '/createInterview', poll);
   }
 
-  answerInterview(poll: Poll): Observable<any> {
-    return this.http.post<any>(API_URL + '/answerInterview', poll);
+  answerInterview(interview: Interview): Observable<any> {
+    return this.http.post<any>(API_URL + '/answerInterview', interview);
   }
 
   getMyInterviewsUser(id: number): Observable<Interview[]> {
