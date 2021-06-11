@@ -116,6 +116,49 @@ export class ProfileComponent implements OnInit {
       });
     });
 
+    /* Отображение выданных интервью */
+    if((this.storageService.getUser().role?.toString()) == Role[0].toString()){
+      let interviewList = document.getElementById("interviewList");
+      this.createService.getMyInterviews(this.storageService.getUser().id!).subscribe(response => {
+        response.forEach(u => {
+          let isAccepted = "";
+          if(u.accepted){
+            let trueAnswers = 0;
+            Array.from(u.questions!).forEach(el => {
+              if(el.accepted){
+                trueAnswers++;
+              }
+            });
+            let allAnswers = u.questions?.length;
+            isAccepted = "Пройдено ("+trueAnswers+"/"+allAnswers+")";
+          }else{
+            isAccepted = "Не пройдено";
+          }
+          interviewList!.innerHTML += "<div class=\"pollDiv\"><p><a href=\"/interview/"+u.id+"\">"+u.name+"</a></p><p class=\"datePoll\">"+isAccepted+"</p><p class=\"datePoll\">"+u.createDate+"</p><p class=\"whoPoll\">Выдан для: <a href=\"/profile/"+u.interviewee?.id+"\">"+u.interviewee?.surname+" "+u.interviewee?.name+" "+u.interviewee?.patronymic+"</a></p></div>";
+        });
+      });
+    }else{
+      let interviewList = document.getElementById("interviewList");
+      this.createService.getMyInterviewsUser(this.storageService.getUser().id!).subscribe(response => {
+        response.forEach(u => {
+          let isAccepted = "";
+          if(u.accepted){
+            let trueAnswers = 0;
+            Array.from(u.questions!).forEach(el => {
+              if(el.accepted){
+                trueAnswers++;
+              }
+            });
+            let allAnswers = u.questions?.length;
+            isAccepted = "Пройдено ("+trueAnswers+"/"+allAnswers+")";
+          }else{
+            isAccepted = "Не пройдено";
+          }
+          interviewList!.innerHTML += "<div class=\"pollDiv\"><p><a href=\"/interview/"+u.id+"\">"+u.name+"</a></p><p class=\"datePoll\">"+isAccepted+"</p><p class=\"datePoll\">"+u.createDate+"</p><p class=\"whoPoll\">Выдан для: <a href=\"/profile/"+u.interviewee?.id+"\">"+u.interviewee?.surname+" "+u.interviewee?.name+" "+u.interviewee?.patronymic+"</a></p></div>";
+        });
+      });
+    }
+
     /* Отображение выданных опросов */
     if((this.storageService.getUser().role?.toString()) == Role[0].toString()){
       let pollList = document.getElementById("pollList");

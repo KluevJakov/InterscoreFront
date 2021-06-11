@@ -218,7 +218,7 @@ input[type="text"] {
     transition: .6s;
 }
 
-input[type="date"] {
+input[type="datetime-local"] {
     width: 88%;
     height: 60px;
     border: 4px solid white;
@@ -249,13 +249,6 @@ div#questions {
     flex-direction: column;
 }
 
-.quest {
-    border: 2px solid white;
-    padding: 20px;
-    width: 80%;
-    background: #ffffff4d;
-}
-
 #optsValue{
     width: 100%;
     display: flex;
@@ -282,7 +275,7 @@ textarea.discrPoll{
 } 
 
 .quest {
-    height: 220px;border: 2px solid white;padding: 20px;width: 80%;background: #ffffff4d;margin-bottom: 30px;
+    border: 2px solid white;padding: 20px;width: 80%;background: #ffffff4d;margin-bottom: 30px;
 } 
 
 .upper {

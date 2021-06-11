@@ -7,6 +7,7 @@ import {environment} from '../../environments/environment';
 import { UserService } from './user.service';
 import { StorageService } from './storage.service';
 import { Category } from '../models/category';
+import { Interview } from '../models/interview';
 
 const API_URL: string = environment.apiUrl;
 
@@ -18,14 +19,28 @@ export class CreateService {
     private storageService: StorageService,
     private router: Router) { }
 
-  createPoll(poll: Poll): Observable<any> {
-    return this.http.post<any>(API_URL + '/pollCreate', poll);
+  /* сервисы интервью */
+  createInterview(poll: Poll): Observable<any> {
+    return this.http.post<any>(API_URL + '/createInterview', poll);
   }
 
-  answerPoll(poll: Poll): Observable<any> {
-    return this.http.post<any>(API_URL + '/answerPoll', poll);
+  answerInterview(poll: Poll): Observable<any> {
+    return this.http.post<any>(API_URL + '/answerInterview', poll);
   }
 
+  getMyInterviewsUser(id: number): Observable<Interview[]> {
+    return this.http.get<Interview[]>(API_URL + '/getMyInterviewsUser/'+id);
+  }
+
+  getMyInterviews(id: number): Observable<Interview[]> {
+    return this.http.get<Interview[]>(API_URL + '/getMyInterviews/'+id);
+  }
+
+  interviewPage(id: number): Observable<Interview> {
+    return this.http.get<Interview>(API_URL + '/interview/' + id);
+  }
+
+  /* сервисы категорий */
   categoryCreate(cat: Category): Observable<any> {
     return this.http.post<any>(API_URL + '/categoryCreate', cat);
   }
@@ -34,6 +49,7 @@ export class CreateService {
     return this.http.get<Category[]>(API_URL + '/getAllCategories');
   }
 
+  /* сервисы опросов */
   getMyPollsUser(id: number): Observable<Poll[]> {
     return this.http.get<Poll[]>(API_URL + '/getMyPollsUser/'+id);
   }
@@ -44,5 +60,13 @@ export class CreateService {
 
   pollPage(id: number): Observable<Poll> {
     return this.http.get<Poll>(API_URL + '/poll/' + id);
+  }
+
+  createPoll(poll: Poll): Observable<any> {
+    return this.http.post<any>(API_URL + '/pollCreate', poll);
+  }
+
+  answerPoll(poll: Poll): Observable<any> {
+    return this.http.post<any>(API_URL + '/answerPoll', poll);
   }
 }

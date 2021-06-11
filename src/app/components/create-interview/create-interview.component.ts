@@ -20,6 +20,7 @@ export class CreateInterviewComponent implements OnInit {
   catList: Array<Category> = new Array();
   questionList: Array<Question> = new Array();
   currentInterview: Interview = new Interview();
+  count = 0;
 
   constructor(private userService: UserService, private storageService: StorageService,private createService: CreateService) { }
 
@@ -35,20 +36,29 @@ export class CreateInterviewComponent implements OnInit {
         }
       });
     });
+
+    this.createService.getAllCategories().subscribe(response => {
+      response.forEach(u => {
+        this.catList.push(u);
+      });
+    });
   }
 
-  createInterview(): void{/*
-    this.currentPoll.name =  (<HTMLInputElement>document.getElementById("nameOfPoll")).value;
-    this.currentPoll.tests = this.testList;
-    this.currentPoll.createDate = new Date().toUTCString().toString();
+  createInterview(): void{
+    this.currentInterview.name =  (<HTMLInputElement>document.getElementById("nameOfInterview")).value;
+    this.currentInterview.place =  (<HTMLInputElement>document.getElementById("placeOfInterview")).value;
+    this.currentInterview.createDate = (<HTMLInputElement>document.getElementById("dateOfInterview")).value;
+    this.currentInterview.questions = this.questionList;
     let interviewee = new User();
     let interviewer = new User();
     interviewee.id = parseInt((<HTMLInputElement>document.getElementById("usersList")).value);
     interviewer.id = this.user.id;
-    this.currentPoll.interviewee = interviewee;
-    this.currentPoll.interviewer = interviewer;
+    this.currentInterview.interviewee = interviewee;
+    this.currentInterview.interviewer = interviewer;
+    
+    //alert(this.currentInterview.questions);
 
-    this.createService.createPoll(this.currentPoll)
+    this.createService.createInterview(this.currentInterview)
       .subscribe(
         response => {
         //this.storageService.saveUser(new User(response));
@@ -56,7 +66,7 @@ export class CreateInterviewComponent implements OnInit {
       }, error => {
         console.log(error);
         window.location.href = "/profile/"+this.user.id;
-      });*/
+      });
   }
 
   addQuestion(): void{
@@ -65,11 +75,54 @@ export class CreateInterviewComponent implements OnInit {
     let questions = document.getElementById("questions");
     questions!.innerHTML+= "<div class='quest'>"+
       "<div class='upper'><input type='text' class='pollTitle' placeholder='Название вопроса' name='title'>"+
-      "<select class='categoryList'></select> <input type='number' class='opts' name='opts' min='2' max='8'></div>"+
+      "<select class='categoryList'></select></div>"+
       "<div class='downer'><textarea class='discrPoll' placeholder='Описание вопроса' name='discription'></textarea>"+
-      "</div><div class='options'></div>"+
+      "</div>"+
       "</div>";
 
-      //this.updateQuestion();
+      this.updateQuestion();
+  }
+
+  updateQuestion(): void{
+
+    let categoryList = document.getElementsByClassName("categoryList")[this.count];
+    this.catList.forEach(u=>{
+      categoryList!.innerHTML += "<option value=\""+u.name+"\">"+u.name+"</option>";
+    });
+
+    for(let i=0;i<this.questionList.length;i++){
+      (<HTMLInputElement>document.getElementsByClassName('pollTitle')[i]).value = this.questionList[i].name as string;
+      (<HTMLInputElement>document.getElementsByClassName('discrPoll')[i]).value = this.questionList[i].discribtion as string;
+      (<HTMLInputElement>document.getElementsByClassName('categoryList')[i]).value = this.questionList[i].category as string;
+
+      if(this.questionList[i].name === undefined){
+        (<HTMLInputElement>document.getElementsByClassName('pollTitle')[i]).value = "";
+      }
+      if(this.questionList[i].discribtion === undefined){
+        (<HTMLInputElement>document.getElementsByClassName('discrPoll')[i]).value = "";
+      }
+    }
+
+    document.querySelectorAll('.pollTitle').forEach((item) => {
+      item.addEventListener('keyup', (e: any) =>{
+        let currentIndex = Array.from(document.getElementsByClassName('pollTitle')).indexOf(e.target);
+        this.questionList[currentIndex].name = e.target.value;
+      });
+    });
+
+    document.querySelectorAll('.discrPoll').forEach((item) => {
+      item.addEventListener('keyup', (e: any) =>{
+        let currentIndex = Array.from(document.getElementsByClassName('discrPoll')).indexOf(e.target);
+        this.questionList[currentIndex].discribtion = e.target.value;
+      });
+    });
+
+    document.querySelectorAll('.categoryList').forEach((item) => {
+      item.addEventListener('change', (e: any) =>{
+        let currentIndex = Array.from(document.getElementsByClassName('categoryList')).indexOf(e.target);
+        this.questionList[currentIndex].category = e.target.value;
+      });
+    });
+    this.count++;
   }
 }

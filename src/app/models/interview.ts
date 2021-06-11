@@ -9,7 +9,7 @@ export class Interview{
     public accepted: boolean;
     public interviewer: User;
     public interviewee: User;
-    public qusetions: Array<Question>;
+    public questions: Array<Question>;
 
     constructor();
     constructor(data?: any);
@@ -21,6 +21,6 @@ export class Interview{
       this.createDate = data?.createDate;
       this.interviewer = data?.interviewer; 
       this.interviewee = data?.interviewee;
-      this.qusetions = data?.qusetions;
+      this.questions = data?.questions;
     }
   }

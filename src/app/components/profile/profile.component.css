@@ -304,3 +304,11 @@ a:hover{
     text-decoration: none;
     color: #b4b8b9
 }
+
+#interviewList{
+    width: 92%;
+    height: 243px;
+    overflow-y: auto;
+    flex-direction: column;
+    padding: 0 10px 10px;
+}

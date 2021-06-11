@@ -51,22 +51,39 @@ input[type="submit"]:hover{
 .form-group {
     margin-bottom: 6%;
     width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 input[type="text"]{
-    width: 95%;
+    width: 88%;
     height: 45px;
     font-size: x-large;
     padding: 2%;
-    font-family: 'Nunito', sans-serif;
+    font-family: Nunito,sans-serif;
 }
 
 input[type="password"]{
-    width: 95%;
+    width: 88%;
     height: 45px;
     font-size: x-large;
     padding: 2%;
-    font-family: 'Nunito', sans-serif;
+    font-family: Nunito,sans-serif;
+}
+input[type="tel"]{
+    width: 88%;
+    height: 45px;
+    font-size: x-large;
+    padding: 2%;
+    font-family: Nunito,sans-serif;
+}
+input[type="date"]{
+    width: 88%;
+    height: 45px;
+    font-size: x-large;
+    padding: 2%;
+    font-family: Nunito,sans-serif;
 }
 
 #sects {
