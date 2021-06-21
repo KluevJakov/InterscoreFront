@@ -1,0 +1,66 @@
+<div id="header">
+    <h2><a href="/">Interscore</a></h2>
+    <div id="bio"><h2><a href="/profile/{{authUser.id}}">{{authUser.email}}</a> | <a style="display: {{isAuth ? 'unset' : 'none'}}" id="logout" href="#" (click)="logout()">Logout</a></h2></div>
+</div>
+<div id="content">
+    <div id="profile">
+        <h2>{{inter}} Profile</h2>
+        <div id="secs">
+            <div class="sections" id="section1">
+                <img src="{{user.photo}}" id="photoStyle" alt="Изображение профиля">
+                <input placeholder="Ссылка на фото профиля" (change)="handleFileInput($event)" style="display: {{currentUser ? 'flex' : 'none'}}" type="text" name="AddImage" id="AddImage" />
+                <ul>
+                    <li>{{user.surname}} {{user.name}} {{user.patronymic}}</li>
+                    <li>{{user.birthday}}</li>
+                    <li></li>
+                    <li>{{user.phone}}</li>
+                    <li>{{user.email}}</li>
+                    <li></li>
+                </ul>
+                <p style="display: {{currentUser ? 'flex' : 'none'}}">Edit profile</p>
+            </div>
+            <div class="sections" id="section2">
+                <h3>My Interviews</h3>
+                <hr>
+                <div id="interviewList">
+                
+                </div>
+                <div style="display: {{isAdmin && currentUser ? 'flex' : 'none'}}" class="plusContainer">
+                    <div class="export" id="exportInterview">e</div>
+                    <div class="plus" onclick="location.href = '/createInterview'" id="plusInterview">+</div>
+                </div>
+            </div>
+            <div class="sections" id="section3">
+                <h3>My Polls</h3>
+                <hr>
+                <div id="pollList">
+                
+                </div>
+                <div style="display: {{isAdmin && currentUser ? 'flex' : 'none'}}" class="plusContainer">
+                    <div class="export" id="exportPolls">e</div>
+                    <div class="plus" onclick="location.href = '/createPoll'" id="plusPolls">+</div>
+                </div>
+            </div>
+            <div style="display: {{isAdmin && currentUser ? 'flex' : 'none'}}" class="sections" id="section4">
+                <h3>My Categories</h3>
+                <hr>
+                <label>
+                    Родительская категория
+                </label>
+                <select id="categoryList">
+
+                </select>
+                <input placeholder="Название категории" type="text" name="category" id="category" />
+                <input type="submit" value="Создать категорию" name="subCategory" id="subCategory" (click)="setCategory($event)"/>
+                <hr>
+                <label>
+                    Удалить категорию
+                </label>
+                <select id="categoryListForDelete">
+
+                </select>
+                <input type="submit" value="Удалить категорию" name="delCategory" id="delCategory" (click)="delCategory($event)"/>
+            </div>
+        </div>
+    </div>
+</div>

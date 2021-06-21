@@ -1,0 +1,39 @@
+<div id="header">
+    <h2><a href="/">Interscore</a></h2>
+    <div id="bio"><h2><a href="/profile/{{user.id}}">{{user.email}}</a></h2></div>
+</div>
+<div id="content">
+    <div id="profile">
+        <h2>Poll Constructor</h2>
+        <div id="secs">
+            <div class="sections" id="section1">
+                <h3>General Information</h3>
+                <hr>
+                <input type="text" id="nameOfPoll" placeholder="Name Of Poll">
+                <select id="usersList">
+                    
+                </select>
+                <input (click)="createPoll()" value="Create Poll" type="submit">
+            </div>
+            <div class="sections" id="section2">
+                <h3>List Of Questions</h3>
+                <hr>
+                <div id="questions">
+                    
+                </div>
+                <div class="plusContainer">
+                    <div class="export" id="exportInterview">e</div>
+                    <div class="plus" (click)="addQuestion()" id="plusInterview">+</div>
+                </div>
+            </div>
+            <script>
+                let input = document.getElementById("opts");
+                input.addEventListener('change', updateValue);
+            
+                function updateValue(e) {
+                    //alert(e.target.value);
+                }
+            </script>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div id="header">
+    <h2><a href="/">Interscore</a></h2>
+    <div id="bio"><h2><a href="/profile/{{user.id}}">{{user.email}}</a></h2></div>
+</div>
+<div id="content">
+    <div id="profile">
+        <h2>Form Constructor</h2>
+        <div id="secs">
+            <div class="sections" id="section1">
+                <h3>General Information</h3>
+                <hr>
+                <input type="text" id="nameOfInterview" placeholder="Name Of Interview">
+                <input type="text" id="placeOfInterview" placeholder="Place Of Interview">
+                <input id="dateOfInterview" type="datetime-local">
+                <select id="usersList">
+                    
+                </select>
+                <input (click)="createInterview()" value="Create Form" type="submit">
+            </div>
+            <div class="sections" id="section2">
+                <h3>List Of Questions</h3>
+                <hr>
+                <div id="questions">
+                    
+                </div>
+                <div class="plusContainer">
+                    <div class="export" id="exportInterview">e</div>
+                    <div (click)="addQuestion()" class="plus" id="plusInterview">+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

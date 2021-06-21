@@ -1,0 +1,197 @@
+#header {
+    background: #485a5f;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header h2{
+    color: white;
+    margin: 0;
+    margin-inline: 20px;
+}
+
+#header h2 a{
+    color: white;
+    text-decoration: none;
+}
+
+#header h2 a:hover{
+    color: #172429;
+}
+
+
+#content{
+    width: 100%;
+    height: 80%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profile {
+    height: 85%;
+    border: 4px solid white;
+    color: white;
+    background: #ffffff30;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sections {
+    border: 2px solid white;
+    background: #ffffff30;
+    height: 450px;
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+#secs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 87%;
+    margin-bottom: 20px;
+}
+
+#section1 {
+    width: 28%;
+}
+
+#section2 {
+    width: 65%;
+}
+
+#section2 h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#section3 h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#section4 h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#section1 img{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 3px solid white;
+    
+}
+
+#section1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#section1 ul {
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+}
+
+#logout {
+    text-decoration: none;
+    color: white;
+}
+
+#logout:hover {
+    text-decoration: none;
+    color: #172429;
+}
+
+hr{
+    width: 100%;
+}
+
+.customText {
+    font-size: large;
+    font-weight: bold;
+    color: #172429;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #b4b8b9
+}
+
+div#questions {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quest {
+    border: 2px solid white;
+    padding: 20px;
+    width: 80%;
+    background: #ffffff4d;
+    margin-bottom: 20px;
+} 
+
+.upper {
+    font-size: x-large;
+    justify-content: space-between;
+    display: flex;
+}
+
+button {
+    width: 300px;
+    height: 50px;
+    background-color: #ffffff00;
+    border: 4px solid white;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: x-large;
+    margin-bottom: 7%;
+    transition: .6s;
+}
+
+button:hover{
+    background-color: white;
+    border: 4px solid #5b8693;
+    color: #5b8693;
+    transition: .6s;
+}
+
+input[type="text"] {
+    width: 90%;
+    height: 30px;
+    border: 4px solid white;
+    color: #000000;
+    font-family: 'Nunito', sans-serif;
+    font-size: x-large;
+    transition: .6s;
+}
+
+input[type="checkbox"] {
+    transform: scale(2);
+    margin-right: 18px;
+}
