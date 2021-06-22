@@ -71,10 +71,18 @@ export class CreatePollComponent implements OnInit {
               let questions = document.getElementById("questions");
               questions!.innerHTML+= "<div class='quest'>"+
                 "<div class='upper'><input value='"+myJSON[i]["name"]+"' type='text' class='pollTitle' placeholder='Название вопроса' name='title'>"+
-                "<select class='categoryList'></select> <input type='number' class='opts' name='opts' min='2' max='8'></div>"+
-                "<div class='downer'><textarea class='discrPoll' placeholder='Описание вопроса' name='discription'>"+myJSON[i]["name"]+"</textarea>"+
+                "<select class='categoryList'><option>"+myJSON[i]["category"]+"</option></select> <input value='"+(myJSON[i]["options"].split(",")).length+"' type='number' class='opts' name='opts' min='2' max='8'></div>"+
+                "<div class='downer'><textarea class='discrPoll' placeholder='Описание вопроса' name='discription'>"+myJSON[i]["discribtion"]+"</textarea>"+
                 "</div><div class='options'></div>"+
                 "</div>";
+                let optionList = document.getElementsByClassName("options")[this.count];
+                for(let j = 0;j<(myJSON[i]["options"].split(",")).length;j++){
+                  let currentCheck = "";
+                  if((myJSON[i]["isTrue"].split(","))[j].trim() == "true"){
+                    currentCheck = "checked";
+                  }
+                  optionList.innerHTML+= "<div><input "+currentCheck+" name='radiogroup"+this.count+"' class='checkOpts' type='radio'>"+"<input value='"+(myJSON[i]["options"].split(","))[j].trim()+"' type='text' class='pollOpts' placeholder='Вариант ответа' name='op"+this.count+"'></div>";
+                }
                 this.count++;
             }
         }
