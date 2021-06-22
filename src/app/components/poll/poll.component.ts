@@ -54,17 +54,37 @@ export class PollComponent implements OnInit {
           Array.from(this.poll.tests!).forEach(el => {
             if(el.accepted){
               let currentTrue = "style='border: 2px solid green'";
+              let currentOpts = "";
+              el.options?.forEach(o => {
+                let currentChecked = "";
+                let currentStyle = "";
+                if(o.isTrue){
+                  currentChecked = "checked";
+                  currentStyle = "style='color:green'";
+                }
+                currentOpts += "<div "+currentStyle+"><input disabled name='radiogroup"+el.id+"' value='"+o.id+"' "+currentChecked+" class='checkOpts' type='radio'>"+o.text+"</div>";
+              });
               questionList!.innerHTML += "<div "+ currentTrue +" class='quest'>"+
               "<div class='upper'><div>"+el.name+"</div><div>"+el.category+"</div></div>"+
               "<div class='downer'>"+el.discribtion+" "+
-              "</div><div class='options'></div>"+
+              "</div><div class='options'>"+currentOpts+"</div>"+
               "</div>";
             }else{
               let currentTrue = "style='border: 2px solid red'";
+              let currentOpts = "";
+              el.options?.forEach(o => {
+                let currentChecked = "";
+                let currentStyle = "";
+                if(o.isTrue){
+                  currentChecked = "checked";
+                  currentStyle = "style='color:green'";
+                }
+                currentOpts += "<div "+currentStyle+"><input disabled name='radiogroup"+el.id+"' value='"+o.id+"' "+currentChecked+" class='checkOpts' type='radio'>"+o.text+"</div>";
+              });
               questionList!.innerHTML += "<div "+ currentTrue +" class='quest'>"+
               "<div class='upper'><div>"+el.name+"</div><div>"+el.category+"</div></div>"+
               "<div class='downer'>"+el.discribtion+" "+
-              "</div><div class='options'></div>"+
+              "</div><div class='options'>"+currentOpts+"</div>"+
               "</div>";
             }
           });

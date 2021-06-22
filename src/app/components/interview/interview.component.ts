@@ -47,19 +47,37 @@ export class InterviewComponent implements OnInit {
             }
           });
           let allAnswers = this.interview.questions?.length;
-          questionList!.innerHTML += "Результаты опроса: "+trueAnswers+"/"+allAnswers;
+          questionList!.innerHTML += "Результаты опроса: "+trueAnswers+"/"+allAnswers+"<br>";
+
+          Array.from(this.interview.questions!).forEach(el => {
+            if(el.accepted){
+              let currentTrue = "style='border: 2px solid green'";
+              let currentCheck = "checked";
+              questionList!.innerHTML +=  "<div "+currentTrue+" class='quest'>"+
+              "<div class='upper'><div>"+el.name+"</div><div>"+el.category+"</div></div>"+
+              "<div class='downer'>"+el.discribtion+"</div>"+
+              "<input "+currentCheck+" type='checkbox' class='checkOpts' value='accept' disabled><input type='text' class='options' placeholder='"+el.text+"' disabled></div>";
+            }else{
+              let currentTrue = "style='border: 2px solid red'";
+              questionList!.innerHTML +=  "<div "+currentTrue+" class='quest'>"+
+              "<div class='upper'><div>"+el.name+"</div><div>"+el.category+"</div></div>"+
+              "<div class='downer'>"+el.discribtion+"</div>"+
+              "<input type='checkbox' class='checkOpts' value='accept' disabled><input type='text' class='options' placeholder='"+el.text+"' disabled></div>";
+            }
+          });
+
         }
       }else{
         this.isAccepted = "Не пройдено";
-      let questionList = document.getElementById("questions");
-      let count = 0;
-      this.interview.questions?.forEach(p => {
-        questionList!.innerHTML += "<div class='quest'>"+
-        "<div class='upper'><div>"+p.name+"</div><div>"+p.category+"</div></div>"+
-        "<div class='downer'>"+p.discribtion+"</div>"+
-        "<input type='checkbox' class='checkOpts' value='accept'><input type='text' class='options' placeholder='Refine your response..'></div>";
-        count++;
-      });
+        let questionList = document.getElementById("questions");
+        let count = 0;
+        this.interview.questions?.forEach(p => {
+          questionList!.innerHTML += "<div class='quest'>"+
+          "<div class='upper'><div>"+p.name+"</div><div>"+p.category+"</div></div>"+
+          "<div class='downer'>"+p.discribtion+"</div>"+
+          "<input type='checkbox' class='checkOpts' value='accept'><input type='text' class='options' placeholder='Refine your response..'></div>";
+          count++;
+        });
 
       questionList!.innerHTML += "<button id=\"subPoll\">Submit</button>";
       document.getElementById("subPoll")?.addEventListener('click', (e: any) => {
