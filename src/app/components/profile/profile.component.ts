@@ -39,6 +39,11 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  /* Уведомления */
+  handleNotification() {
+    //alert("!");
+  }
+
    /* Валидация фото профиля */
   handleFileInput(event?: Event) {
     this.fileToUpload = (<HTMLInputElement>event?.target).value;
@@ -112,7 +117,13 @@ export class ProfileComponent implements OnInit {
 
     this.createService.getAllCategories().subscribe(response => {
       response.forEach(u => {
-        categoryList!.innerHTML += "<option value=\""+u.id+"\">"+u.name+"</option>";
+        if(u.parent?.parent != null){
+          categoryList!.innerHTML += "<option value=\""+u.id+"\">--"+u.name+"</option>";
+        }else if(u.parent != null){
+          categoryList!.innerHTML += "<option value=\""+u.id+"\">-"+u.name+"</option>";
+        }else{
+          categoryList!.innerHTML += "<option value=\""+u.id+"\">"+u.name+"</option>";
+        }
       });
     });
 

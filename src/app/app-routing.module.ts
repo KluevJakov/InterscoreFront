@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ActivationComponent } from './components/activation/activation.component';
 import { CreateInterviewComponent } from './components/create-interview/create-interview.component';
 import { CreatePollComponent } from './components/create-poll/create-poll.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'createInterview', component: CreateInterviewComponent},
   {path: 'createPoll', component: CreatePollComponent},
   {path: 'poll/:id', component: PollComponent},
-  {path: 'interview/:id', component: InterviewComponent}
+  {path: 'interview/:id', component: InterviewComponent},
+  {path: 'activation/:code', component: ActivationComponent},
 ];
 
 @NgModule({

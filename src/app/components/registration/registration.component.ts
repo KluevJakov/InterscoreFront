@@ -41,7 +41,7 @@ export class RegistrationComponent implements OnInit {
     this.authService.register(this.formRegistration)
       .subscribe(
         response => {
-        this.storageService.saveUser(new User(response));
+        //this.storageService.saveUser(new User(response));
         this.router.navigate(['/']).then(() => location.reload());
       },
         (error) => {

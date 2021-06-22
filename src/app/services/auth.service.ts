@@ -26,6 +26,9 @@ export class AuthService {
     register(form: FormGroup): Observable<any> {
       return this.http.post<any>( API_URL + '/registration', form.value);
     }
+    activate(code: string): Observable<any> {
+      return this.http.get<any>(API_URL + '/activation/'+code);
+    }
   
     logout(): void {
       this.storageService.clearStorage();
