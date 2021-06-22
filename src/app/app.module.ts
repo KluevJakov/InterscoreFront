@@ -14,6 +14,7 @@ import { CreatePollComponent } from './components/create-poll/create-poll.compon
 import { CreateInterviewComponent } from './components/create-interview/create-interview.component';
 import { PollComponent } from './components/poll/poll.component';
 import { InterviewComponent } from './components/interview/interview.component';
+import { AccesserrorComponent } from './components/accesserror/accesserror.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { InterviewComponent } from './components/interview/interview.component';
     CreatePollComponent,
     CreateInterviewComponent,
     PollComponent,
-    InterviewComponent
+    InterviewComponent,
+    AccesserrorComponent
   ],
   imports: [
     BrowserModule,

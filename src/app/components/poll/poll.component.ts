@@ -49,7 +49,25 @@ export class PollComponent implements OnInit {
             }
           });
           let allAnswers = this.poll.tests?.length;
-          questionList!.innerHTML += "Результаты опроса: "+trueAnswers+"/"+allAnswers;
+          questionList!.innerHTML += "Результаты опроса: "+trueAnswers+"/"+allAnswers+"<br>";
+
+          Array.from(this.poll.tests!).forEach(el => {
+            if(el.accepted){
+              let currentTrue = "style='border: 2px solid green'";
+              questionList!.innerHTML += "<div "+ currentTrue +" class='quest'>"+
+              "<div class='upper'><div>"+el.name+"</div><div>"+el.category+"</div></div>"+
+              "<div class='downer'>"+el.discribtion+" "+
+              "</div><div class='options'></div>"+
+              "</div>";
+            }else{
+              let currentTrue = "style='border: 2px solid red'";
+              questionList!.innerHTML += "<div "+ currentTrue +" class='quest'>"+
+              "<div class='upper'><div>"+el.name+"</div><div>"+el.category+"</div></div>"+
+              "<div class='downer'>"+el.discribtion+" "+
+              "</div><div class='options'></div>"+
+              "</div>";
+            }
+          });
         }
       }else{
         this.isAccepted = "Не пройдено";
@@ -76,10 +94,14 @@ export class PollComponent implements OnInit {
       questionList!.innerHTML += "<button id=\"subPoll\">Submit</button>";
       document.getElementById("subPoll")?.addEventListener('click', (e: any) => {
         let checkCountAnswers = 0;
+
+        //alert(Array.from(document.querySelectorAll('.options')[0].querySelectorAll('.checkOpts')).length);
+
         Array.from(document.querySelectorAll('.checkOpts')).forEach(p => {
-          
           let questionNumber = Array.from(document.querySelectorAll('.options')).indexOf((<HTMLInputElement>p).parentElement!.parentElement!);
-          let optionNumber = Array.from(document.querySelectorAll('.checkOpts')).indexOf((<HTMLInputElement>p));
+          let optionNumber = Array.from(document.querySelectorAll('.options')[questionNumber].querySelectorAll('.checkOpts')).indexOf((<HTMLInputElement>p));
+
+          console.log(questionNumber+" "+optionNumber);
 
           if((<HTMLInputElement>p).checked){
             if(this.poll.tests != null && this.poll.tests != undefined){
