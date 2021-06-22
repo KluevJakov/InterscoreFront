@@ -75,12 +75,19 @@ export class CreatePollComponent implements OnInit {
                 "<div class='downer'><textarea class='discrPoll' placeholder='Описание вопроса' name='discription'>"+myJSON[i]["discribtion"]+"</textarea>"+
                 "</div><div class='options'></div>"+
                 "</div>";
+                this.testList[this.count].name = myJSON[i]["name"];
+                this.testList[this.count].discribtion = myJSON[i]["discribtion"];
+                this.testList[this.count].category =  myJSON[i]["category"];
                 let optionList = document.getElementsByClassName("options")[this.count];
+                this.testList[this.count].options = [];
                 for(let j = 0;j<(myJSON[i]["options"].split(",")).length;j++){
+                  this.testList[this.count].options?.push(new Option());
                   let currentCheck = "";
                   if((myJSON[i]["isTrue"].split(","))[j].trim() == "true"){
                     currentCheck = "checked";
+                    this.testList[this.count].options![j].isTrue = true;
                   }
+                  this.testList[this.count].options![j].text = (myJSON[i]["options"].split(","))[j].trim();
                   optionList.innerHTML+= "<div><input "+currentCheck+" name='radiogroup"+this.count+"' class='checkOpts' type='radio'>"+"<input value='"+(myJSON[i]["options"].split(","))[j].trim()+"' type='text' class='pollOpts' placeholder='Вариант ответа' name='op"+this.count+"'></div>";
                 }
                 this.count++;
