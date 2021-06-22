@@ -8,6 +8,7 @@ import { Poll } from 'src/app/models/poll';
 import { CreateService } from 'src/app/services/create.service';
 import { Category } from 'src/app/models/category';
 import { Role } from 'src/app/models/role';
+import * as XLSX from 'ts-xlsx';
 
 @Component({
   selector: 'app-create-poll',
@@ -22,6 +23,8 @@ export class CreatePollComponent implements OnInit {
   catList: Array<Category> = new Array();
   currentPoll: Poll = new Poll();
   count = 0;
+  arrayBuffer:any;
+  file!: File;
 
   constructor(private userService: UserService, private storageService: StorageService,private createService: CreateService) { }
 
@@ -45,7 +48,37 @@ export class CreatePollComponent implements OnInit {
     });
 
     let questions = document.getElementById("questions");
-    //questions!.innerHTML+= "<style></style>";
+  }
+
+  incomingfile(event: any): void {
+    this.file= event.target.files[0]; 
+    
+    let fileReader = new FileReader();
+        fileReader.onload = (e) => {
+            this.arrayBuffer = fileReader.result;
+            var data = new Uint8Array(this.arrayBuffer);
+            var arr = new Array();
+            for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+            var bstr = arr.join("");
+            var workbook = XLSX.read(bstr, {type:"binary"});
+            var first_sheet_name = workbook.SheetNames[0];
+            var worksheet = workbook.Sheets[first_sheet_name];
+            console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
+            let myJSON = JSON.parse(JSON.stringify(XLSX.utils.sheet_to_json(worksheet,{raw:true})));
+            
+            for(let i = 0;i<myJSON.length;i++){
+              this.testList.push(new Test());
+              let questions = document.getElementById("questions");
+              questions!.innerHTML+= "<div class='quest'>"+
+                "<div class='upper'><input value='"+myJSON[i]["name"]+"' type='text' class='pollTitle' placeholder='Название вопроса' name='title'>"+
+                "<select class='categoryList'></select> <input type='number' class='opts' name='opts' min='2' max='8'></div>"+
+                "<div class='downer'><textarea class='discrPoll' placeholder='Описание вопроса' name='discription'>"+myJSON[i]["name"]+"</textarea>"+
+                "</div><div class='options'></div>"+
+                "</div>";
+                this.count++;
+            }
+        }
+        fileReader.readAsArrayBuffer(this.file);
   }
 
   createPoll(): void{
