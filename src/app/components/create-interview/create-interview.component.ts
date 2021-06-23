@@ -86,9 +86,16 @@ export class CreateInterviewComponent implements OnInit {
   updateQuestion(): void{
 
     let categoryList = document.getElementsByClassName("categoryList")[this.count];
-    this.catList.forEach(u=>{
-      categoryList!.innerHTML += "<option value=\""+u.name+"\">"+u.name+"</option>";
-    });
+    
+    for(let i=0;i<this.catList.length;i++){
+      if(this.catList[i].parent?.parent != null){
+        categoryList!.innerHTML += "<option value=\""+this.catList[i].name+"\">--"+this.catList[i].name+"</option>";
+      }else if(this.catList[i].parent != null){
+        categoryList!.innerHTML += "<option value=\""+this.catList[i].name+"\">-"+this.catList[i].name+"</option>";
+      }else{
+        categoryList!.innerHTML += "<option value=\""+this.catList[i].name+"\">"+this.catList[i].name+"</option>";
+      }
+    }
 
     for(let i=0;i<this.questionList.length;i++){
       (<HTMLInputElement>document.getElementsByClassName('pollTitle')[i]).value = this.questionList[i].name as string;

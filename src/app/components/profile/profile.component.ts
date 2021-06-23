@@ -131,7 +131,7 @@ export class ProfileComponent implements OnInit {
     if((this.storageService.getUser().role?.toString()) == Role[0].toString()){
       let interviewList = document.getElementById("interviewList");
       this.createService.getMyInterviews(this.storageService.getUser().id!).subscribe(response => {
-        response.forEach(u => {
+        response.sort(function(x, y) { return (x.accepted === y.accepted)? 0 : x.accepted? 1 : -1; }).forEach(u => {
           let isAccepted = "";
           if(u.accepted){
             let trueAnswers = 0;
@@ -151,7 +151,7 @@ export class ProfileComponent implements OnInit {
     }else{
       let interviewList = document.getElementById("interviewList");
       this.createService.getMyInterviewsUser(this.storageService.getUser().id!).subscribe(response => {
-        response.forEach(u => {
+        response.sort(function(x, y) { return (x.accepted === y.accepted)? 0 : x.accepted? 1 : -1; }).forEach(u => {
           let isAccepted = "";
           if(u.accepted){
             let trueAnswers = 0;
@@ -174,7 +174,7 @@ export class ProfileComponent implements OnInit {
     if((this.storageService.getUser().role?.toString()) == Role[0].toString()){
       let pollList = document.getElementById("pollList");
       this.createService.getMyPolls(this.storageService.getUser().id!).subscribe(response => {
-        response.forEach(u => {
+        response.sort(function(x, y) { return (x.accepted === y.accepted)? 0 : x.accepted? 1 : -1; }).forEach(u => {
           let isAccepted = "";
           if(u.accepted){
             let trueAnswers = 0;
@@ -194,7 +194,7 @@ export class ProfileComponent implements OnInit {
     }else{
       let pollList = document.getElementById("pollList");
       this.createService.getMyPollsUser(this.storageService.getUser().id!).subscribe(response => {
-        response.forEach(u => {
+        response.sort(function(x, y) { return (x.accepted === y.accepted)? 0 : x.accepted? 1 : -1; }).forEach(u => {
           let isAccepted = "";
           if(u.accepted){
             let trueAnswers = 0;

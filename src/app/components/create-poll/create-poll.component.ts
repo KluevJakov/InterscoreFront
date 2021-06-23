@@ -119,10 +119,7 @@ export class CreatePollComponent implements OnInit {
   }
 
   updateQuestion(): void{
-
-    let catJSON = JSON.parse(JSON.stringify(this.catList));
     let categoryList = document.getElementsByClassName("categoryList")[this.count];
-    
     
     for(let i=0;i<this.catList.length;i++){
       if(this.catList[i].parent?.parent != null){
@@ -133,11 +130,6 @@ export class CreatePollComponent implements OnInit {
         categoryList!.innerHTML += "<option value=\""+this.catList[i].name+"\">"+this.catList[i].name+"</option>";
       }
     }
-    /*
-    this.catList.forEach(u=>{
-      categoryList!.innerHTML += "<option value=\""+u.name+"\">"+u.name+"</option>";
-    });
-    */
 
     for(let i=0;i<this.testList.length;i++){
       (<HTMLInputElement>document.getElementsByClassName('pollTitle')[i]).value = this.testList[i].name as string;

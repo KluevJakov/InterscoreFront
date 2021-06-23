@@ -33,7 +33,7 @@ export class InterviewComponent implements OnInit {
       this.interview = response;
       //alert(this.user.id + " " + this.poll.interviewee?.id);
       if(this.interview.accepted || (this.user.id == this.interview.interviewee?.id)){
-        if(this.user.id == this.interview.interviewer?.id && !this.interview.accepted){
+        if(this.user.id == this.interview.interviewee?.id && !this.interview.accepted){
           this.isAccepted = "Не пройдено";
           let questionList = document.getElementById("questions");
           questionList!.innerHTML += "Интервью ещё не пройдено";
