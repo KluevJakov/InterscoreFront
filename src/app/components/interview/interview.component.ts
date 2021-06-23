@@ -67,10 +67,6 @@ export class InterviewComponent implements OnInit {
           });
           let divExport = document.getElementById("divExport");
           divExport!.innerHTML += "<span id='exporting'><a download>(экспорт результатов)</a></span>";
-
-          divExport?.addEventListener('click', (e: any) => {
-            alert("!");
-          });
         }
       }else{
         this.isAccepted = "Не пройдено";

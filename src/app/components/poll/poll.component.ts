@@ -6,6 +6,7 @@ import { Test } from 'src/app/models/test';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CreateService } from 'src/app/services/create.service';
+import { ExcelService } from 'src/app/services/excel.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -24,7 +25,7 @@ export class PollComponent implements OnInit {
   user: User = {} as User;
   poll: Poll = {} as Poll;
 
-  constructor(private createService: CreateService,private authService: AuthService,private route: ActivatedRoute,private userService: UserService, private storageService: StorageService) { }
+  constructor(private createService: CreateService, private excelService: ExcelService,private authService: AuthService,private route: ActivatedRoute,private userService: UserService, private storageService: StorageService) { }
 
   ngOnInit(): void {
     this.user = this.storageService.getUser();
@@ -89,9 +90,6 @@ export class PollComponent implements OnInit {
             }
           });
         }
-
-        let divExport = document.getElementById("divExport");
-        divExport!.innerHTML += "<span id='exporting'><a download>(экспорт результатов)</a></span>";
       }else{
         this.isAccepted = "Не пройдено";
       let questionList = document.getElementById("questions");
@@ -161,6 +159,12 @@ export class PollComponent implements OnInit {
       }
     }
   }
+
+  excel=[];
+
+  exportAsXLSX():void {  
+    //this.excelService.exportAsExcelFile(this.excel, 'sample');  
+ }  
 
   logout(): void {
     this.authService.logout();

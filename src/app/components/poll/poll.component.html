@@ -15,7 +15,7 @@
                     <li><div class="customText">Interviewer:</div> <a href="/profile/{{poll.interviewer?.id}}">{{poll.interviewer?.surname}} {{poll.interviewer?.name}} {{poll.interviewer?.patronymic}}</a></li>
                     <li><div class="customText">Interviewee:</div> <a href="/profile/{{poll.interviewee?.id}}">{{poll.interviewee?.surname}} {{poll.interviewee?.name}} {{poll.interviewee?.patronymic}}</a></li>
                     <li><div class="customText">Accepted:</div> {{isAccepted}}</li>
-                    <li style="display: {{poll.accepted ? 'unset' : 'none'}}" id="divExport"><div class="customText">Export: </div></li>
+                    <li style="display: {{poll.accepted ? 'unset' : 'none'}}" (click)="exportAsXLSX()" id="divExport"><div class="customText">Export: </div><span id='exporting'><a>(экспорт результатов)</a></span></li>
                 </ul>
                 <p style="display: {{currentUser ? 'flex' : 'none'}}">Edit profile</p>
             </div>
