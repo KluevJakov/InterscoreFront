@@ -65,7 +65,12 @@ export class InterviewComponent implements OnInit {
               "<input type='checkbox' class='checkOpts' value='accept' disabled><input type='text' class='options' placeholder='"+el.text+"' disabled></div>";
             }
           });
+          let divExport = document.getElementById("divExport");
+          divExport!.innerHTML += "<span id='exporting'><a download>(экспорт результатов)</a></span>";
 
+          divExport?.addEventListener('click', (e: any) => {
+            alert("!");
+          });
         }
       }else{
         this.isAccepted = "Не пройдено";

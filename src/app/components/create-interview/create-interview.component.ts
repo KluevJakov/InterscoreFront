@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user';
 import { CreateService } from 'src/app/services/create.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
+import * as XLSX from 'ts-xlsx';
 
 @Component({
   selector: 'app-create-interview',
@@ -21,6 +22,8 @@ export class CreateInterviewComponent implements OnInit {
   questionList: Array<Question> = new Array();
   currentInterview: Interview = new Interview();
   count = 0;
+  arrayBuffer:any;
+  file!: File;
 
   constructor(private userService: UserService, private storageService: StorageService,private createService: CreateService) { }
 
@@ -42,6 +45,42 @@ export class CreateInterviewComponent implements OnInit {
         this.catList.push(u);
       });
     });
+  }
+
+  incomingfile(event: any): void {
+    this.file= event.target.files[0]; 
+    
+    let fileReader = new FileReader();
+        fileReader.onload = (e) => {
+            this.arrayBuffer = fileReader.result;
+            var data = new Uint8Array(this.arrayBuffer);
+            var arr = new Array();
+            for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+            var bstr = arr.join("");
+            var workbook = XLSX.read(bstr, {type:"binary"});
+            var first_sheet_name = workbook.SheetNames[0];
+            var worksheet = workbook.Sheets[first_sheet_name];
+            console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
+            let myJSON = JSON.parse(JSON.stringify(XLSX.utils.sheet_to_json(worksheet,{raw:true})));
+            
+            for(let i = 0;i<myJSON.length;i++){
+                this.questionList.push(new Question());
+                let questions = document.getElementById("questions");
+
+                questions!.innerHTML+= "<div class='quest'>"+
+                "<div class='upper'><input value='"+myJSON[i]["name"]+"' type='text' class='pollTitle' placeholder='Название вопроса' name='title'>"+
+                "<select class='categoryList'><option>"+myJSON[i]["category"]+"</option></select></div>"+
+                "<div class='downer'><textarea class='discrPoll' placeholder='Описание вопроса' name='discription'>"+myJSON[i]["discribtion"]+"</textarea>"+
+                "</div>"+
+                "</div>";
+
+                this.questionList[this.count].name = myJSON[i]["name"];
+                this.questionList[this.count].discribtion = myJSON[i]["discribtion"];
+                this.questionList[this.count].category =  myJSON[i]["category"];
+                this.count++;
+            }
+        }
+        fileReader.readAsArrayBuffer(this.file);
   }
 
   createInterview(): void{

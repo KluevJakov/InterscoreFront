@@ -89,6 +89,9 @@ export class PollComponent implements OnInit {
             }
           });
         }
+
+        let divExport = document.getElementById("divExport");
+        divExport!.innerHTML += "<span id='exporting'><a download>(экспорт результатов)</a></span>";
       }else{
         this.isAccepted = "Не пройдено";
       let questionList = document.getElementById("questions");

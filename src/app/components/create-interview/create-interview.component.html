@@ -24,7 +24,10 @@
                     
                 </div>
                 <div class="plusContainer">
-                    <div class="export" id="exportInterview">e</div>
+                    <input type="file" name="file" id="file" (change)="incomingfile($event)" class="input-file" accept=".xlsx">
+                    <label for="file" class="btn btn-tertiary js-labelFile">
+                        <div class="export" id="exportInterview">e</div>
+                    </label>
                     <div (click)="addQuestion()" class="plus" id="plusInterview">+</div>
                 </div>
             </div>

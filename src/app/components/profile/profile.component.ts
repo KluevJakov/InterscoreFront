@@ -70,15 +70,19 @@ export class ProfileComponent implements OnInit {
       .subscribe(
       error => {
         console.log(error);
-        //window.location.reload();
       });
     window.location.reload();
   }
 
   /* Удаление категории */
   delCategory(event?: Event) {
-    alert((<HTMLInputElement>document.getElementById("categoryList")).value);
-    alert((<HTMLInputElement>document.getElementById("category")).value);
+    let category = new Category();
+    this.createService.categoryDelete(parseInt((<HTMLInputElement>document.getElementById("categoryListForDelete")).value)) 
+    .subscribe(
+      error => {
+        console.log(error);
+      });
+      window.location.reload();
   }
 
   ngOnInit(): void {
@@ -113,6 +117,7 @@ export class ProfileComponent implements OnInit {
 
     /* Притягивания категорий */
     let categoryList = document.getElementById("categoryList");
+    let categoryListForDelete = document.getElementById("categoryListForDelete");
     categoryList!.innerHTML += "<option value=\""+null+"\">-</option>";
 
     this.createService.getAllCategories().subscribe(response => {
@@ -123,6 +128,16 @@ export class ProfileComponent implements OnInit {
           categoryList!.innerHTML += "<option value=\""+u.id+"\">-"+u.name+"</option>";
         }else{
           categoryList!.innerHTML += "<option value=\""+u.id+"\">"+u.name+"</option>";
+        }
+      });
+
+      response.forEach(u => {
+        if(u.parent?.parent != null){
+          categoryListForDelete!.innerHTML += "<option value=\""+u.id+"\">--"+u.name+"</option>";
+        }else if(u.parent != null){
+          categoryListForDelete!.innerHTML += "<option value=\""+u.id+"\">-"+u.name+"</option>";
+        }else{
+          categoryListForDelete!.innerHTML += "<option value=\""+u.id+"\">"+u.name+"</option>";
         }
       });
     });

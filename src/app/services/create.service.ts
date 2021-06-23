@@ -44,6 +44,10 @@ export class CreateService {
   categoryCreate(cat: Category): Observable<any> {
     return this.http.post<any>(API_URL + '/categoryCreate', cat);
   }
+  
+  categoryDelete(cat: number): Observable<number> {
+    return this.http.get<number>(API_URL + '/categoryDelete/'+ cat);
+  }
 
   getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(API_URL + '/getAllCategories');
